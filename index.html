@@ -1,1261 +1,1369 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Cophia Properties | Elevating Spaces, Creating Value</title>
-    <meta name="description" content="Cophia Properties — Long-term rentals, short-term rentals, and property remodeling. Quality, integrity, and customer satisfaction.">
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600;700&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
-    <style>
-        /* ===== RESET & BASE ===== */
-        *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
-
-        :root {
-            --navy: #1a2332;
-            --navy-light: #243044;
-            --gold: #c8a45e;
-            --gold-light: #dbc07e;
-            --cream: #f8f6f1;
-            --white: #ffffff;
-            --gray-100: #f5f5f5;
-            --gray-200: #e8e8e8;
-            --gray-400: #999;
-            --gray-600: #666;
-            --gray-800: #333;
-            --font-heading: 'Playfair Display', Georgia, serif;
-            --font-body: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
-        }
-
-        html { scroll-behavior: smooth; }
-
-        body {
-            font-family: var(--font-body);
-            color: var(--gray-800);
-            line-height: 1.6;
-            background: var(--white);
-        }
-
-        img { max-width: 100%; height: auto; display: block; }
-        a { text-decoration: none; color: inherit; }
-
-        .container {
-            max-width: 1200px;
-            margin: 0 auto;
-            padding: 0 24px;
-        }
-
-        /* ===== NAVIGATION ===== */
-        .nav {
-            position: fixed;
-            top: 0;
-            left: 0;
-            right: 0;
-            z-index: 1000;
-            background: rgba(26, 35, 50, 0.95);
-            backdrop-filter: blur(10px);
-            border-bottom: 1px solid rgba(200, 164, 94, 0.2);
-            transition: background 0.3s;
-        }
-
-        .nav-inner {
-            max-width: 1200px;
-            margin: 0 auto;
-            padding: 0 24px;
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-            height: 72px;
-        }
-
-        .nav-logo {
-            display: flex;
-            align-items: center;
-        }
-
-        .nav-logo img {
-            height: 50px;
-            width: auto;
-        }
-
-        .nav-links {
-            display: flex;
-            list-style: none;
-            gap: 32px;
-        }
-
-        .nav-links a {
-            color: rgba(255,255,255,0.85);
-            font-size: 0.9rem;
-            font-weight: 500;
-            letter-spacing: 0.5px;
-            text-transform: uppercase;
-            transition: color 0.3s;
-            position: relative;
-        }
-
-        .nav-links a:hover,
-        .nav-links a.active { color: var(--gold); }
-
-        .nav-links a::after {
-            content: '';
-            position: absolute;
-            bottom: -4px;
-            left: 0;
-            width: 0;
-            height: 2px;
-            background: var(--gold);
-            transition: width 0.3s;
-        }
-
-        .nav-links a:hover::after { width: 100%; }
-
-        .nav-toggle {
-            display: none;
-            flex-direction: column;
-            gap: 5px;
-            background: none;
-            border: none;
-            cursor: pointer;
-            padding: 4px;
-        }
-
-        .nav-toggle span {
-            width: 24px;
-            height: 2px;
-            background: var(--white);
-            transition: 0.3s;
-        }
-
-        /* ===== HERO ===== */
-        .hero {
-            position: relative;
-            min-height: 100vh;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            background: linear-gradient(135deg, var(--navy) 0%, var(--navy-light) 50%, #2a3a52 100%);
-            overflow: hidden;
-        }
-
-        .hero::before {
-            content: '';
-            position: absolute;
-            inset: 0;
-            background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1440 800"><rect fill="%231a2332"/><circle cx="200" cy="400" r="300" fill="%23c8a45e" opacity="0.03"/><circle cx="1200" cy="200" r="400" fill="%23c8a45e" opacity="0.02"/><circle cx="700" cy="700" r="250" fill="%23c8a45e" opacity="0.03"/></svg>') center/cover;
-        }
-
-        .hero-content {
-            position: relative;
-            text-align: center;
-            max-width: 800px;
-            padding: 0 24px;
-        }
-
-        .hero-badge {
-            display: inline-block;
-            padding: 8px 20px;
-            border: 1px solid var(--gold);
-            color: var(--gold);
-            font-size: 0.8rem;
-            font-weight: 600;
-            letter-spacing: 3px;
-            text-transform: uppercase;
-            margin-bottom: 32px;
-            border-radius: 2px;
-        }
-
-        .hero h1 {
-            font-family: var(--font-heading);
-            font-size: clamp(2.5rem, 6vw, 4.5rem);
-            color: var(--white);
-            font-weight: 700;
-            line-height: 1.15;
-            margin-bottom: 24px;
-        }
-
-        .hero h1 em {
-            font-style: italic;
-            color: var(--gold);
-        }
-
-        .hero p {
-            font-size: 1.15rem;
-            color: rgba(255,255,255,0.7);
-            max-width: 550px;
-            margin: 0 auto 40px;
-            font-weight: 300;
-            line-height: 1.7;
-        }
-
-        .hero-buttons {
-            display: flex;
-            gap: 16px;
-            justify-content: center;
-            flex-wrap: wrap;
-        }
-
-        .btn {
-            display: inline-flex;
-            align-items: center;
-            gap: 8px;
-            padding: 14px 32px;
-            font-family: var(--font-body);
-            font-size: 0.9rem;
-            font-weight: 600;
-            letter-spacing: 0.5px;
-            text-transform: uppercase;
-            border-radius: 3px;
-            transition: all 0.3s;
-            cursor: pointer;
-            border: none;
-        }
-
-        .btn-primary {
-            background: var(--gold);
-            color: var(--navy);
-        }
-
-        .btn-primary:hover {
-            background: var(--gold-light);
-            transform: translateY(-2px);
-            box-shadow: 0 8px 25px rgba(200,164,94,0.3);
-        }
-
-        .btn-outline {
-            background: transparent;
-            color: var(--white);
-            border: 1px solid rgba(255,255,255,0.3);
-        }
-
-        .btn-outline:hover {
-            border-color: var(--gold);
-            color: var(--gold);
-        }
-
-        .scroll-indicator {
-            position: absolute;
-            bottom: 40px;
-            left: 50%;
-            transform: translateX(-50%);
-            animation: bounce 2s infinite;
-        }
-
-        .scroll-indicator svg {
-            width: 24px;
-            height: 24px;
-            stroke: var(--gold);
-            opacity: 0.6;
-        }
-
-        @keyframes bounce {
-            0%, 100% { transform: translateX(-50%) translateY(0); }
-            50% { transform: translateX(-50%) translateY(10px); }
-        }
-
-        /* ===== SECTIONS ===== */
-        section { padding: 100px 0; }
-
-        .section-label {
-            display: inline-block;
-            font-size: 0.75rem;
-            font-weight: 600;
-            letter-spacing: 3px;
-            text-transform: uppercase;
-            color: var(--gold);
-            margin-bottom: 16px;
-        }
-
-        .section-title {
-            font-family: var(--font-heading);
-            font-size: clamp(2rem, 4vw, 3rem);
-            color: var(--navy);
-            margin-bottom: 20px;
-            line-height: 1.2;
-        }
-
-        .section-subtitle {
-            font-size: 1.05rem;
-            color: var(--gray-600);
-            max-width: 600px;
-            line-height: 1.7;
-            font-weight: 300;
-        }
-
-        .section-header {
-            text-align: center;
-            margin-bottom: 64px;
-        }
-
-        .section-header .section-subtitle {
-            margin: 0 auto;
-        }
-
-        /* ===== ABOUT ===== */
-        .about { background: var(--cream); }
-
-        .about-grid {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 80px;
-            align-items: center;
-        }
-
-        .about-text .section-subtitle {
-            margin-bottom: 24px;
-        }
-
-        .about-text p {
-            color: var(--gray-600);
-            line-height: 1.8;
-            margin-bottom: 16px;
-            font-size: 1rem;
-        }
-
-        .about-image {
-            position: relative;
-        }
-
-        .about-image .image-placeholder {
-            aspect-ratio: 4/5;
-            background: var(--navy);
-            border-radius: 4px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            color: rgba(255,255,255,0.3);
-            font-size: 0.85rem;
-            text-align: center;
-            padding: 24px;
-            position: relative;
-            overflow: hidden;
-        }
-
-        .about-image .image-placeholder::before {
-            content: '';
-            position: absolute;
-            bottom: 0;
-            left: 0;
-            right: 0;
-            height: 4px;
-            background: var(--gold);
-        }
-
-        .about-values {
-            display: grid;
-            grid-template-columns: repeat(3, 1fr);
-            gap: 32px;
-            margin-top: 48px;
-        }
-
-        .value-item {
-            text-align: center;
-            padding: 32px 16px;
-            background: var(--white);
-            border-radius: 4px;
-            box-shadow: 0 2px 20px rgba(0,0,0,0.04);
-        }
-
-        .value-icon {
-            width: 48px;
-            height: 48px;
-            margin: 0 auto 16px;
-            background: var(--navy);
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-        }
-
-        .value-icon svg {
-            width: 22px;
-            height: 22px;
-            stroke: var(--gold);
-            fill: none;
-        }
-
-        .value-item h4 {
-            font-family: var(--font-heading);
-            font-size: 1.1rem;
-            color: var(--navy);
-            margin-bottom: 8px;
-        }
-
-        .value-item p {
-            font-size: 0.85rem;
-            color: var(--gray-600);
-            line-height: 1.6;
-        }
-
-        /* ===== SERVICES ===== */
-        .services-grid {
-            display: grid;
-            grid-template-columns: repeat(3, 1fr);
-            gap: 32px;
-        }
-
-        .service-card {
-            background: var(--white);
-            border: 1px solid var(--gray-200);
-            border-radius: 4px;
-            padding: 48px 32px;
-            text-align: center;
-            transition: all 0.3s;
-            position: relative;
-            overflow: hidden;
-        }
-
-        .service-card::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            right: 0;
-            height: 3px;
-            background: var(--gold);
-            transform: scaleX(0);
-            transition: transform 0.3s;
-        }
-
-        .service-card:hover {
-            transform: translateY(-4px);
-            box-shadow: 0 12px 40px rgba(0,0,0,0.08);
-        }
-
-        .service-card:hover::before { transform: scaleX(1); }
-
-        .service-icon {
-            width: 64px;
-            height: 64px;
-            margin: 0 auto 24px;
-            background: var(--cream);
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-        }
-
-        .service-icon svg {
-            width: 28px;
-            height: 28px;
-            stroke: var(--gold);
-            fill: none;
-        }
-
-        .service-card h3 {
-            font-family: var(--font-heading);
-            font-size: 1.3rem;
-            color: var(--navy);
-            margin-bottom: 12px;
-        }
-
-        .service-card p {
-            font-size: 0.9rem;
-            color: var(--gray-600);
-            line-height: 1.7;
-        }
-
-        .service-card .btn {
-            margin-top: 24px;
-            padding: 10px 24px;
-            font-size: 0.8rem;
-        }
-
-        /* ===== PROPERTIES ===== */
-        .properties-ltr { background: var(--cream); }
-
-        .property-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
-            gap: 24px;
-        }
-
-        .property-card {
-            background: var(--white);
-            border-radius: 4px;
-            overflow: hidden;
-            box-shadow: 0 2px 20px rgba(0,0,0,0.06);
-            transition: all 0.3s;
-        }
-
-        .property-card:hover {
-            transform: translateY(-4px);
-            box-shadow: 0 12px 40px rgba(0,0,0,0.1);
-        }
-
-        .property-image {
-            aspect-ratio: 16/10;
-            background: var(--navy-light);
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            color: rgba(255,255,255,0.3);
-            font-size: 0.8rem;
-            position: relative;
-        }
-
-        .property-image .tag {
-            position: absolute;
-            top: 12px;
-            left: 12px;
-            background: var(--gold);
-            color: var(--navy);
-            font-size: 0.7rem;
-            font-weight: 600;
-            text-transform: uppercase;
-            letter-spacing: 1px;
-            padding: 4px 10px;
-            border-radius: 2px;
-        }
-
-        .property-info {
-            padding: 20px;
-        }
-
-        .property-info h4 {
-            font-family: var(--font-heading);
-            font-size: 1.1rem;
-            color: var(--navy);
-            margin-bottom: 6px;
-        }
-
-        .property-info .location {
-            display: flex;
-            align-items: center;
-            gap: 6px;
-            color: var(--gray-400);
-            font-size: 0.85rem;
-            margin-bottom: 12px;
-        }
-
-        .property-info .location svg {
-            width: 14px;
-            height: 14px;
-            stroke: var(--gold);
-            fill: none;
-        }
-
-        .property-info .btn {
-            width: 100%;
-            justify-content: center;
-            padding: 10px 20px;
-            font-size: 0.8rem;
-        }
-
-        /* ===== REMODELING ===== */
-        .remodel-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
-            gap: 32px;
-        }
-
-        .remodel-card {
-            background: var(--white);
-            border-radius: 4px;
-            overflow: hidden;
-            box-shadow: 0 2px 20px rgba(0,0,0,0.06);
-        }
-
-        .remodel-images {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            position: relative;
-        }
-
-        .remodel-images .before,
-        .remodel-images .after {
-            aspect-ratio: 4/3;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 0.75rem;
-            color: rgba(255,255,255,0.4);
-            position: relative;
-        }
-
-        .remodel-images .before { background: var(--gray-800); }
-        .remodel-images .after { background: var(--navy-light); }
-
-        .remodel-images .label {
-            position: absolute;
-            bottom: 8px;
-            left: 8px;
-            font-size: 0.65rem;
-            font-weight: 600;
-            text-transform: uppercase;
-            letter-spacing: 1.5px;
-            color: var(--white);
-            background: rgba(0,0,0,0.5);
-            padding: 3px 8px;
-            border-radius: 2px;
-        }
-
-        .remodel-images .divider {
-            position: absolute;
-            top: 0;
-            left: 50%;
-            transform: translateX(-50%);
-            width: 3px;
-            height: 100%;
-            background: var(--gold);
-            z-index: 1;
-        }
-
-        .remodel-info {
-            padding: 20px;
-        }
-
-        .remodel-info h4 {
-            font-family: var(--font-heading);
-            font-size: 1.1rem;
-            color: var(--navy);
-            margin-bottom: 6px;
-        }
-
-        .remodel-info p {
-            font-size: 0.85rem;
-            color: var(--gray-600);
-            line-height: 1.6;
-        }
-
-        /* ===== CONTACT ===== */
-        .contact { background: var(--navy); color: var(--white); }
-
-        .contact .section-title { color: var(--white); }
-        .contact .section-subtitle { color: rgba(255,255,255,0.6); }
-
-        .contact-grid {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 64px;
-            margin-top: 48px;
-        }
-
-        .contact-info-list {
-            display: flex;
-            flex-direction: column;
-            gap: 32px;
-        }
-
-        .contact-item {
-            display: flex;
-            gap: 16px;
-            align-items: flex-start;
-        }
-
-        .contact-item-icon {
-            width: 48px;
-            height: 48px;
-            min-width: 48px;
-            background: rgba(200,164,94,0.1);
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-        }
-
-        .contact-item-icon svg {
-            width: 20px;
-            height: 20px;
-            stroke: var(--gold);
-            fill: none;
-        }
-
-        .contact-item h4 {
-            font-size: 0.8rem;
-            font-weight: 600;
-            letter-spacing: 1.5px;
-            text-transform: uppercase;
-            color: var(--gold);
-            margin-bottom: 6px;
-        }
-
-        .contact-item p,
-        .contact-item a {
-            color: rgba(255,255,255,0.8);
-            font-size: 1rem;
-            line-height: 1.6;
-        }
-
-        .contact-item a:hover { color: var(--gold); }
-
-        .contact-form {
-            display: flex;
-            flex-direction: column;
-            gap: 20px;
-        }
-
-        .form-group label {
-            display: block;
-            font-size: 0.8rem;
-            font-weight: 600;
-            letter-spacing: 1px;
-            text-transform: uppercase;
-            color: rgba(255,255,255,0.5);
-            margin-bottom: 8px;
-        }
-
-        .form-group input,
-        .form-group textarea,
-        .form-group select {
-            width: 100%;
-            padding: 14px 16px;
-            background: rgba(255,255,255,0.06);
-            border: 1px solid rgba(255,255,255,0.12);
-            border-radius: 3px;
-            color: var(--white);
-            font-family: var(--font-body);
-            font-size: 0.95rem;
-            transition: border-color 0.3s;
-        }
-
-        .form-group input:focus,
-        .form-group textarea:focus,
-        .form-group select:focus {
-            outline: none;
-            border-color: var(--gold);
-        }
-
-        .form-group textarea { min-height: 120px; resize: vertical; }
-
-        .form-group select option { background: var(--navy); }
-
-        .form-row {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 20px;
-        }
-
-        .contact-form .btn-primary { width: 100%; justify-content: center; }
-
-        /* ===== FOOTER ===== */
-        .footer {
-            background: #111922;
-            padding: 48px 0 24px;
-            text-align: center;
-        }
-
-        .footer-logo {
-            margin-bottom: 16px;
-        }
-
-        .footer-logo img {
-            height: 45px;
-            width: auto;
-            margin: 0 auto;
-        }
-
-        .footer p {
-            color: rgba(255,255,255,0.4);
-            font-size: 0.85rem;
-        }
-
-        .footer-divider {
-            width: 60px;
-            height: 2px;
-            background: var(--gold);
-            margin: 24px auto;
-            opacity: 0.4;
-        }
-
-        /* ===== MOBILE ===== */
-        @media (max-width: 900px) {
-            .nav-links { display: none; }
-            .nav-links.open {
-                display: flex;
-                flex-direction: column;
-                position: absolute;
-                top: 72px;
-                left: 0;
-                right: 0;
-                background: var(--navy);
-                padding: 24px;
-                gap: 20px;
-                border-bottom: 1px solid rgba(200,164,94,0.2);
-            }
-            .nav-toggle { display: flex; }
-            .about-grid { grid-template-columns: 1fr; gap: 40px; }
-            .about-values { grid-template-columns: 1fr; }
-            .services-grid { grid-template-columns: 1fr; }
-            .contact-grid { grid-template-columns: 1fr; }
-            .form-row { grid-template-columns: 1fr; }
-            .remodel-grid { grid-template-columns: 1fr; }
-        }
-
-        /* ===== ANIMATIONS ===== */
-        .fade-in {
-            opacity: 0;
-            transform: translateY(30px);
-            transition: opacity 0.6s ease, transform 0.6s ease;
-        }
-
-        .fade-in.visible {
-            opacity: 1;
-            transform: translateY(0);
-        }
-    </style>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Cophia Properties</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&family=Jost:wght@300;400;500;600&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --forest: #2C4A2E;
+      --forest-deep: #1a2e1b;
+      --forest-light: #3d6640;
+      --gold: #C8A84B;
+      --gold-light: #E0C06A;
+      --gold-pale: #f5ead4;
+      --cream: #FAF7F0;
+      --warm-white: #FDFBF6;
+      --charcoal: #2a2a2a;
+      --text-muted: #7a7a6e;
+      --border: rgba(200, 168, 75, 0.2);
+    }
+
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      font-family: 'Jost', sans-serif;
+      background: var(--warm-white);
+      color: var(--charcoal);
+      overflow-x: hidden;
+    }
+
+    /* ── NAV ── */
+    nav {
+      position: fixed;
+      top: 0; left: 0; right: 0;
+      z-index: 100;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 1.2rem 4rem;
+      background: rgba(26, 46, 27, 0.96);
+      backdrop-filter: blur(12px);
+      border-bottom: 1px solid rgba(200,168,75,0.15);
+      transition: padding 0.3s;
+    }
+
+    .nav-logo {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 1.6rem;
+      font-weight: 400;
+      color: var(--gold);
+      letter-spacing: 0.04em;
+      text-decoration: none;
+    }
+    .nav-logo span { color: #fff; font-weight: 300; }
+
+    .nav-links {
+      display: flex;
+      gap: 2.5rem;
+      list-style: none;
+    }
+    .nav-links a {
+      font-size: 0.78rem;
+      font-weight: 500;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: rgba(255,255,255,0.75);
+      text-decoration: none;
+      transition: color 0.2s;
+    }
+    .nav-links a:hover { color: var(--gold); }
+
+    .nav-cta {
+      background: transparent;
+      border: 1px solid var(--gold);
+      color: var(--gold) !important;
+      padding: 0.5rem 1.2rem;
+      border-radius: 2px;
+      transition: background 0.2s, color 0.2s !important;
+    }
+    .nav-cta:hover { background: var(--gold) !important; color: var(--forest-deep) !important; }
+
+    /* ── HERO ── */
+    .hero {
+      height: 100vh;
+      min-height: 680px;
+      display: grid;
+      place-items: center;
+      background: linear-gradient(160deg, var(--forest-deep) 0%, var(--forest) 55%, #3a5e3c 100%);
+      position: relative;
+      overflow: hidden;
+    }
+
+    .hero::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background:
+        radial-gradient(ellipse 60% 50% at 75% 50%, rgba(200,168,75,0.08) 0%, transparent 70%),
+        radial-gradient(ellipse 40% 60% at 20% 80%, rgba(200,168,75,0.05) 0%, transparent 60%);
+    }
+
+    .hero-grid-lines {
+      position: absolute;
+      inset: 0;
+      background-image:
+        linear-gradient(rgba(200,168,75,0.04) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(200,168,75,0.04) 1px, transparent 1px);
+      background-size: 80px 80px;
+    }
+
+    .hero-content {
+      position: relative;
+      text-align: center;
+      padding: 0 2rem;
+      max-width: 800px;
+      animation: fadeUp 1s ease both;
+    }
+
+    .hero-eyebrow {
+      font-size: 0.72rem;
+      letter-spacing: 0.25em;
+      text-transform: uppercase;
+      color: var(--gold);
+      margin-bottom: 1.5rem;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 1rem;
+    }
+    .hero-eyebrow::before, .hero-eyebrow::after {
+      content: '';
+      width: 40px;
+      height: 1px;
+      background: var(--gold);
+      opacity: 0.5;
+    }
+
+    .hero h1 {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: clamp(3rem, 7vw, 5.5rem);
+      font-weight: 300;
+      color: #fff;
+      line-height: 1.1;
+      margin-bottom: 1.5rem;
+    }
+    .hero h1 em {
+      font-style: italic;
+      color: var(--gold-light);
+    }
+
+    .hero-sub {
+      font-size: 1rem;
+      font-weight: 300;
+      color: rgba(255,255,255,0.65);
+      line-height: 1.7;
+      max-width: 520px;
+      margin: 0 auto 2.5rem;
+      letter-spacing: 0.02em;
+    }
+
+    .hero-btns {
+      display: flex;
+      gap: 1rem;
+      justify-content: center;
+      flex-wrap: wrap;
+    }
+
+    .btn-primary {
+      background: var(--gold);
+      color: var(--forest-deep);
+      padding: 0.85rem 2.2rem;
+      border: none;
+      border-radius: 2px;
+      font-family: 'Jost', sans-serif;
+      font-size: 0.78rem;
+      font-weight: 600;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      cursor: pointer;
+      text-decoration: none;
+      transition: background 0.2s, transform 0.15s;
+      display: inline-block;
+    }
+    .btn-primary:hover { background: var(--gold-light); transform: translateY(-1px); }
+
+    .btn-outline {
+      background: transparent;
+      color: #fff;
+      padding: 0.85rem 2.2rem;
+      border: 1px solid rgba(255,255,255,0.35);
+      border-radius: 2px;
+      font-family: 'Jost', sans-serif;
+      font-size: 0.78rem;
+      font-weight: 500;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      cursor: pointer;
+      text-decoration: none;
+      transition: border-color 0.2s, color 0.2s;
+      display: inline-block;
+    }
+    .btn-outline:hover { border-color: var(--gold); color: var(--gold); }
+
+    .hero-scroll {
+      position: absolute;
+      bottom: 2.5rem;
+      left: 50%;
+      transform: translateX(-50%);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 0.5rem;
+      color: rgba(255,255,255,0.4);
+      font-size: 0.65rem;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      animation: bounce 2s infinite;
+    }
+    .hero-scroll-line {
+      width: 1px;
+      height: 40px;
+      background: linear-gradient(to bottom, rgba(200,168,75,0.6), transparent);
+    }
+
+    /* ── SERVICES ── */
+    .services {
+      background: var(--cream);
+      padding: 6rem 4rem;
+    }
+
+    .section-label {
+      font-size: 0.7rem;
+      letter-spacing: 0.25em;
+      text-transform: uppercase;
+      color: var(--gold);
+      margin-bottom: 0.75rem;
+    }
+
+    .section-title {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: clamp(2rem, 4vw, 3rem);
+      font-weight: 400;
+      color: var(--forest-deep);
+      line-height: 1.2;
+      margin-bottom: 3.5rem;
+    }
+
+    .services-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 2px;
+      max-width: 1100px;
+      margin: 0 auto;
+    }
+
+    .service-card {
+      background: #fff;
+      padding: 3rem 2.5rem;
+      position: relative;
+      overflow: hidden;
+      transition: transform 0.3s;
+    }
+    .service-card:hover { transform: translateY(-4px); }
+    .service-card::after {
+      content: '';
+      position: absolute;
+      bottom: 0; left: 0; right: 0;
+      height: 3px;
+      background: var(--gold);
+      transform: scaleX(0);
+      transform-origin: left;
+      transition: transform 0.3s;
+    }
+    .service-card:hover::after { transform: scaleX(1); }
+
+    .service-icon {
+      width: 48px;
+      height: 48px;
+      margin-bottom: 1.5rem;
+      color: var(--gold);
+    }
+
+    .service-card h3 {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 1.6rem;
+      font-weight: 400;
+      color: var(--forest-deep);
+      margin-bottom: 0.75rem;
+    }
+
+    .service-card p {
+      font-size: 0.88rem;
+      line-height: 1.75;
+      color: var(--text-muted);
+      font-weight: 300;
+    }
+
+    .service-card a {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.4rem;
+      margin-top: 1.5rem;
+      font-size: 0.75rem;
+      font-weight: 600;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--forest);
+      text-decoration: none;
+      transition: gap 0.2s, color 0.2s;
+    }
+    .service-card a:hover { gap: 0.8rem; color: var(--gold); }
+
+    /* ── STR ── */
+    #str { padding: 6rem 4rem; background: var(--warm-white); }
+
+    .str-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 2rem;
+      max-width: 1200px;
+      margin: 0 auto;
+    }
+
+    .str-card {
+      background: #fff;
+      border: 1px solid var(--border);
+      border-radius: 4px;
+      overflow: hidden;
+      transition: box-shadow 0.3s, transform 0.3s;
+    }
+    .str-card:hover {
+      box-shadow: 0 16px 48px rgba(44,74,46,0.12);
+      transform: translateY(-4px);
+    }
+
+    .str-photo {
+      height: 220px;
+      background: linear-gradient(135deg, var(--forest) 0%, var(--forest-light) 100%);
+      position: relative;
+      overflow: hidden;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .str-photo img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
+    }
+
+    .str-photo-placeholder {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 0.5rem;
+      color: rgba(255,255,255,0.4);
+      font-size: 0.7rem;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+    }
+
+    .photo-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      grid-template-rows: 1fr 1fr;
+      height: 220px;
+      gap: 2px;
+    }
+    .photo-grid .main-photo { grid-row: span 2; }
+    .photo-cell {
+      background: linear-gradient(135deg, var(--forest) 0%, var(--forest-light) 100%);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: rgba(255,255,255,0.25);
+      font-size: 0.6rem;
+      letter-spacing: 0.1em;
+    }
+    .photo-cell.alt { background: linear-gradient(135deg, #3a5e3c 0%, #2C4A2E 100%); }
+    .photo-cell.alt2 { background: linear-gradient(135deg, #243d26 0%, #3a5e3c 100%); }
+
+    .str-badge {
+      position: absolute;
+      top: 1rem; right: 1rem;
+      background: var(--gold);
+      color: var(--forest-deep);
+      font-size: 0.65rem;
+      font-weight: 600;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      padding: 0.3rem 0.7rem;
+      border-radius: 2px;
+    }
+
+    .str-body { padding: 1.5rem; }
+    .str-location {
+      font-size: 0.7rem;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--gold);
+      margin-bottom: 0.4rem;
+    }
+    .str-card h3 {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 1.4rem;
+      font-weight: 400;
+      color: var(--forest-deep);
+      margin-bottom: 0.6rem;
+    }
+    .str-card p {
+      font-size: 0.83rem;
+      color: var(--text-muted);
+      line-height: 1.65;
+      font-weight: 300;
+      margin-bottom: 1.2rem;
+    }
+    .str-features {
+      display: flex;
+      gap: 1rem;
+      margin-bottom: 1.2rem;
+      flex-wrap: wrap;
+    }
+    .str-feat {
+      font-size: 0.72rem;
+      color: var(--text-muted);
+      display: flex;
+      align-items: center;
+      gap: 0.3rem;
+    }
+    .str-feat svg { color: var(--gold); }
+
+    .airbnb-btn {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 0.5rem;
+      width: 100%;
+      padding: 0.75rem;
+      background: var(--forest-deep);
+      color: #fff;
+      border: none;
+      border-radius: 2px;
+      font-family: 'Jost', sans-serif;
+      font-size: 0.75rem;
+      font-weight: 500;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      text-decoration: none;
+      transition: background 0.2s;
+      cursor: pointer;
+    }
+    .airbnb-btn:hover { background: var(--gold); color: var(--forest-deep); }
+    .airbnb-logo { width: 18px; height: 18px; }
+
+    /* ── LTR ── */
+    #ltr { padding: 6rem 4rem; background: var(--cream); }
+
+    .ltr-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+      gap: 1.5rem;
+      max-width: 1200px;
+      margin: 0 auto;
+    }
+
+    .ltr-card {
+      background: #fff;
+      border: 1px solid var(--border);
+      overflow: hidden;
+      transition: box-shadow 0.3s;
+    }
+    .ltr-card:hover { box-shadow: 0 8px 32px rgba(44,74,46,0.1); }
+
+    .ltr-photo {
+      height: 200px;
+      background: linear-gradient(135deg, var(--forest) 0%, var(--forest-light) 100%);
+      position: relative;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+    .ltr-photo-inner {
+      display: grid;
+      grid-template-columns: 1.4fr 1fr;
+      gap: 2px;
+      width: 100%;
+      height: 100%;
+    }
+    .ltr-photo-cell {
+      background: linear-gradient(135deg, var(--forest) 0%, #3d6640 100%);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: rgba(255,255,255,0.2);
+      font-size: 0.55rem;
+      letter-spacing: 0.08em;
+    }
+    .ltr-photo-cell:nth-child(2) { background: linear-gradient(135deg, #3a5e3c 0%, var(--forest-deep) 100%); }
+
+    .ltr-overlay-tag {
+      position: absolute;
+      top: 1rem; left: 1rem;
+      background: rgba(26,46,27,0.85);
+      backdrop-filter: blur(4px);
+      color: var(--gold);
+      font-size: 0.62rem;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      padding: 0.25rem 0.6rem;
+      border: 1px solid rgba(200,168,75,0.3);
+    }
+
+    .ltr-body { padding: 1.2rem 1.5rem 1.5rem; }
+    .ltr-city {
+      font-size: 0.68rem;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      color: var(--gold);
+      margin-bottom: 0.3rem;
+    }
+    .ltr-card h3 {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 1.3rem;
+      font-weight: 400;
+      color: var(--forest-deep);
+    }
+    .ltr-privacy {
+      margin-top: 0.8rem;
+      font-size: 0.72rem;
+      color: var(--text-muted);
+      display: flex;
+      align-items: center;
+      gap: 0.35rem;
+    }
+    .ltr-privacy svg { color: var(--forest); }
+
+    /* ── RENOVATIONS ── */
+    #renovations { padding: 6rem 4rem; background: var(--warm-white); }
+
+    .reno-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 3rem;
+      max-width: 1100px;
+      margin: 0 auto;
+    }
+
+    .reno-card {
+      border: 1px solid var(--border);
+      overflow: hidden;
+      background: #fff;
+    }
+
+    .before-after {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 2px;
+      height: 240px;
+    }
+
+    .ba-panel {
+      position: relative;
+      overflow: hidden;
+    }
+
+    .ba-photo {
+      width: 100%;
+      height: 100%;
+      background: linear-gradient(135deg, #4a4a4a 0%, #2a2a2a 100%);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: rgba(255,255,255,0.2);
+      font-size: 0.6rem;
+      letter-spacing: 0.08em;
+    }
+
+    .ba-photo.after-photo {
+      background: linear-gradient(135deg, var(--forest-light) 0%, var(--forest-deep) 100%);
+    }
+
+    .ba-label {
+      position: absolute;
+      top: 0.75rem; left: 0.75rem;
+      font-size: 0.6rem;
+      font-weight: 600;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      padding: 0.2rem 0.5rem;
+    }
+    .before-label { background: rgba(0,0,0,0.6); color: rgba(255,255,255,0.8); }
+    .after-label { background: var(--gold); color: var(--forest-deep); }
+
+    .reno-body { padding: 1.5rem; }
+    .reno-location {
+      font-size: 0.68rem;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      color: var(--gold);
+      margin-bottom: 0.3rem;
+    }
+    .reno-card h3 {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 1.4rem;
+      font-weight: 400;
+      color: var(--forest-deep);
+      margin-bottom: 0.5rem;
+    }
+    .reno-tags { display: flex; gap: 0.5rem; flex-wrap: wrap; }
+    .reno-tag {
+      font-size: 0.65rem;
+      letter-spacing: 0.08em;
+      padding: 0.2rem 0.6rem;
+      border: 1px solid var(--border);
+      color: var(--text-muted);
+      border-radius: 2px;
+    }
+
+    /* ── STATS STRIP ── */
+    .stats-strip {
+      background: var(--forest-deep);
+      padding: 3rem 4rem;
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 2rem;
+      text-align: center;
+      border-top: 2px solid var(--gold);
+      border-bottom: 2px solid var(--gold);
+    }
+
+    .stat-item {}
+    .stat-num {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 3rem;
+      font-weight: 300;
+      color: var(--gold);
+      line-height: 1;
+      margin-bottom: 0.5rem;
+    }
+    .stat-label {
+      font-size: 0.72rem;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      color: rgba(255,255,255,0.55);
+      font-weight: 300;
+    }
+
+    /* ── CONTACT ── */
+    #contact {
+      padding: 6rem 4rem;
+      background: var(--cream);
+    }
+
+    .contact-inner {
+      max-width: 900px;
+      margin: 0 auto;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 5rem;
+      align-items: start;
+    }
+
+    .contact-left h2 {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: clamp(2rem, 4vw, 2.8rem);
+      font-weight: 400;
+      color: var(--forest-deep);
+      line-height: 1.2;
+      margin-bottom: 1rem;
+    }
+    .contact-left p {
+      font-size: 0.88rem;
+      line-height: 1.75;
+      color: var(--text-muted);
+      font-weight: 300;
+      margin-bottom: 2rem;
+    }
+
+    .contact-detail {
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+      margin-bottom: 1.2rem;
+    }
+    .contact-icon {
+      width: 40px;
+      height: 40px;
+      background: var(--forest-deep);
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+    }
+    .contact-icon svg { color: var(--gold); }
+    .contact-text { font-size: 0.9rem; color: var(--charcoal); }
+    .contact-text a { color: var(--forest); text-decoration: none; transition: color 0.2s; }
+    .contact-text a:hover { color: var(--gold); }
+    .contact-text-label { font-size: 0.65rem; letter-spacing: 0.12em; text-transform: uppercase; color: var(--text-muted); margin-bottom: 0.1rem; }
+
+    .contact-form {
+      background: #fff;
+      padding: 2.5rem;
+      border: 1px solid var(--border);
+    }
+    .contact-form h3 {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 1.5rem;
+      font-weight: 400;
+      color: var(--forest-deep);
+      margin-bottom: 1.5rem;
+    }
+
+    .form-group { margin-bottom: 1.2rem; }
+    .form-group label {
+      display: block;
+      font-size: 0.68rem;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--text-muted);
+      margin-bottom: 0.4rem;
+    }
+    .form-group input,
+    .form-group select,
+    .form-group textarea {
+      width: 100%;
+      padding: 0.75rem 1rem;
+      border: 1px solid #e0ddd4;
+      background: var(--warm-white);
+      font-family: 'Jost', sans-serif;
+      font-size: 0.88rem;
+      color: var(--charcoal);
+      outline: none;
+      transition: border-color 0.2s;
+      border-radius: 2px;
+    }
+    .form-group input:focus,
+    .form-group select:focus,
+    .form-group textarea:focus { border-color: var(--gold); }
+    .form-group textarea { height: 100px; resize: vertical; }
+
+    .submit-btn {
+      width: 100%;
+      padding: 0.9rem;
+      background: var(--forest-deep);
+      color: #fff;
+      border: none;
+      font-family: 'Jost', sans-serif;
+      font-size: 0.78rem;
+      font-weight: 600;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      cursor: pointer;
+      transition: background 0.2s;
+      border-radius: 2px;
+    }
+    .submit-btn:hover { background: var(--gold); color: var(--forest-deep); }
+
+    /* ── FOOTER ── */
+    footer {
+      background: var(--forest-deep);
+      padding: 3rem 4rem;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      gap: 1.5rem;
+      border-top: 1px solid rgba(200,168,75,0.15);
+    }
+
+    .footer-logo {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 1.4rem;
+      color: var(--gold);
+      letter-spacing: 0.04em;
+    }
+    .footer-logo span { color: rgba(255,255,255,0.5); font-weight: 300; }
+
+    .footer-links { display: flex; gap: 2rem; }
+    .footer-links a {
+      font-size: 0.72rem;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: rgba(255,255,255,0.4);
+      text-decoration: none;
+      transition: color 0.2s;
+    }
+    .footer-links a:hover { color: var(--gold); }
+
+    .footer-copy {
+      font-size: 0.72rem;
+      color: rgba(255,255,255,0.3);
+      letter-spacing: 0.05em;
+    }
+
+    /* ── DECORATIVE DIVIDER ── */
+    .divider {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 1.5rem;
+      margin-bottom: 1rem;
+    }
+    .divider-line { flex: 1; max-width: 80px; height: 1px; background: var(--gold); opacity: 0.35; }
+    .divider-diamond {
+      width: 8px; height: 8px;
+      background: var(--gold);
+      transform: rotate(45deg);
+      opacity: 0.6;
+    }
+
+    /* ── ANIMATIONS ── */
+    @keyframes fadeUp {
+      from { opacity: 0; transform: translateY(30px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+    @keyframes bounce {
+      0%, 100% { transform: translateX(-50%) translateY(0); }
+      50% { transform: translateX(-50%) translateY(6px); }
+    }
+
+    .fade-in {
+      opacity: 0;
+      transform: translateY(20px);
+      transition: opacity 0.7s ease, transform 0.7s ease;
+    }
+    .fade-in.visible { opacity: 1; transform: translateY(0); }
+
+    /* ── MOBILE ── */
+    @media (max-width: 900px) {
+      nav { padding: 1rem 1.5rem; }
+      .nav-links { display: none; }
+      .services-grid, .str-grid { grid-template-columns: 1fr; }
+      .stats-strip { grid-template-columns: repeat(2, 1fr); }
+      .contact-inner { grid-template-columns: 1fr; gap: 2.5rem; }
+      .reno-grid { grid-template-columns: 1fr; }
+      #str, #ltr, #renovations, #contact, .services { padding: 4rem 1.5rem; }
+      footer { padding: 2rem 1.5rem; flex-direction: column; align-items: flex-start; }
+    }
+
+    @media (max-width: 600px) {
+      .ltr-grid { grid-template-columns: 1fr; }
+      .stats-strip { grid-template-columns: 1fr 1fr; padding: 2rem 1.5rem; }
+    }
+  </style>
 </head>
 <body>
 
-    <!-- NAVIGATION -->
-    <nav class="nav">
-        <div class="nav-inner">
-            <a href="#" class="nav-logo"><img src="images/logo.png" srcset="images/logo@2x.png 2x" alt="Cophia Properties"></a>
-            <ul class="nav-links" id="navLinks">
-                <li><a href="#about">About</a></li>
-                <li><a href="#services">Services</a></li>
-                <li><a href="#ltr">Rentals</a></li>
-                <li><a href="#str">Book a Stay</a></li>
-                <li><a href="#remodeling">Remodeling</a></li>
-                <li><a href="#contact">Contact</a></li>
-            </ul>
-            <button class="nav-toggle" id="navToggle" aria-label="Toggle menu">
-                <span></span><span></span><span></span>
-            </button>
+<!-- NAV -->
+<nav>
+  <a class="nav-logo" href="#"><img src="Cophia_Color_Gold.png" alt="Cophia Properties" style="height:40px;vertical-align:middle;"></a>
+  <ul class="nav-links">
+    <li><a href="#str">Short-Term Rentals</a></li>
+    <li><a href="#ltr">Long-Term Rentals</a></li>
+    <li><a href="#renovations">Renovations</a></li>
+    <li><a href="#contact" class="nav-cta">Contact Us</a></li>
+  </ul>
+</nav>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="hero-grid-lines"></div>
+  <div class="hero-content">
+    <div class="hero-eyebrow">St. Louis, Missouri</div>
+    <h1>Real Estate<br><em>Done Right</em></h1>
+    <p class="hero-sub">Short-term rentals, long-term rentals, and expert renovations — thoughtfully managed properties across the St. Louis metro area.</p>
+    <div class="hero-btns">
+      <a href="#str" class="btn-primary">View Our Rentals</a>
+      <a href="#contact" class="btn-outline">Get In Touch</a>
+    </div>
+  </div>
+  <div class="hero-scroll">
+    <div class="hero-scroll-line"></div>
+    Scroll
+  </div>
+</section>
+
+<!-- SERVICES -->
+<section class="services">
+  <div style="max-width:1100px; margin:0 auto;">
+    <div class="section-label">What We Do</div>
+    <h2 class="section-title">Full-Service Property Management<br>& Renovation</h2>
+    <div class="services-grid fade-in">
+
+      <div class="service-card">
+        <svg class="service-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+          <path d="M3 9l9-7 9 7v11a2 2 0 01-2 2H5a2 2 0 01-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/>
+        </svg>
+        <h3>Short-Term Rentals</h3>
+        <p>Beautifully furnished, guest-ready properties available on Airbnb. Ideal for travelers seeking the comfort of home with the style of a boutique stay.</p>
+        <a href="#str">Explore listings →</a>
+      </div>
+
+      <div class="service-card">
+        <svg class="service-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+          <rect x="1" y="3" width="15" height="13"/><polygon points="16 8 20 8 23 11 23 16 16 16 16 8"/>
+          <circle cx="5.5" cy="18.5" r="2.5"/><circle cx="18.5" cy="18.5" r="2.5"/>
+        </svg>
+        <h3>Long-Term Rentals</h3>
+        <p>Well-maintained residential properties across sought-after St. Louis neighborhoods — providing stable, quality housing for our tenants.</p>
+        <a href="#ltr">View properties →</a>
+      </div>
+
+      <div class="service-card">
+        <svg class="service-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+          <path d="M14.7 6.3a1 1 0 000 1.4l1.6 1.6a1 1 0 001.4 0l3.77-3.77a6 6 0 01-7.94 7.94l-6.91 6.91a2.12 2.12 0 01-3-3l6.91-6.91a6 6 0 017.94-7.94l-3.76 3.76z"/>
+        </svg>
+        <h3>Renovations</h3>
+        <p>From structural overhauls to full interior refreshes — we transform undervalued properties into stunning homes with lasting value.</p>
+        <a href="#renovations">See transformations →</a>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- STATS STRIP -->
+<div class="stats-strip fade-in">
+  <div class="stat-item">
+    <div class="stat-num">3</div>
+    <div class="stat-label">Active STR Listings</div>
+  </div>
+  <div class="stat-item">
+    <div class="stat-num">5</div>
+    <div class="stat-label">Long-Term Rentals</div>
+  </div>
+  <div class="stat-item">
+    <div class="stat-num">2+</div>
+    <div class="stat-label">Renovations Completed</div>
+  </div>
+  <div class="stat-item">
+    <div class="stat-num">STL</div>
+    <div class="stat-label">Metro Area Focused</div>
+  </div>
+</div>
+
+<!-- STR SECTION -->
+<section id="str">
+  <div style="max-width:1200px; margin:0 auto;">
+    <div class="section-label fade-in">Airbnb Properties</div>
+    <h2 class="section-title fade-in">Short-Term Rentals</h2>
+    <p style="font-size:0.9rem;color:var(--text-muted);font-weight:300;max-width:560px;line-height:1.75;margin-bottom:3rem;" class="fade-in">
+      Each of our short-term rentals is thoughtfully designed, fully stocked, and ready to welcome guests. Click any listing to book directly on Airbnb.
+    </p>
+
+    <div class="str-grid">
+
+      <!-- STR 1: The Cophia Retreat (7739 Peach Tree Ln) -->
+      <div class="str-card fade-in">
+        <div class="photo-grid">
+          <div class="photo-cell main-photo" style="background:url('https://photos.zillowstatic.com/fp/bcc5044fd308287e384ca0a4500d398d-cc_ft_1536.jpg') center/cover;"></div>
+          <div class="photo-cell" style="background:url('https://photos.zillowstatic.com/fp/7db8eb83808c0b050c33ec266078c56c-cc_ft_1536.jpg') center/cover;"></div>
+          <div class="photo-cell" style="background:url('https://photos.zillowstatic.com/fp/df1c8dc8b9c96078ce7a66dd1af07f98-cc_ft_1536.jpg') center/cover;"></div>
         </div>
-    </nav>
-
-    <!-- HERO -->
-    <section class="hero">
-        <div class="hero-content">
-            <div class="hero-badge">Rentals &bull; Remodeling &bull; Results</div>
-            <h1>Elevating Spaces,<br>Creating <em>Lasting Value</em></h1>
-            <p>Transforming properties into cherished homes through quality craftsmanship, thoughtful management, and an unwavering commitment to excellence.</p>
-            <div class="hero-buttons">
-                <a href="#services" class="btn btn-primary">Explore Our Services</a>
-                <a href="#contact" class="btn btn-outline">Get In Touch</a>
-            </div>
+        <div class="str-body">
+          <div class="str-location">St. Louis, MO</div>
+          <h3>MCM Home in U-City</h3>
+          <p>A charming, fully-furnished escape in the St. Louis area — perfect for weekend getaways, business travel, or extended stays.</p>
+          <div class="str-features">
+            <span class="str-feat">
+              <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 9l9-7 9 7v11a2 2 0 01-2 2H5a2 2 0 01-2-2z"/></svg>
+              Entire Home
+            </span>
+            <span class="str-feat">
+              <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20.84 4.61a5.5 5.5 0 00-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 00-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 000-7.78z"/></svg>
+              Guest Favorite
+            </span>
+          </div>
+          <a href="https://www.airbnb.com/rooms/1551591718173477288" target="_blank" rel="noopener" class="airbnb-btn">
+            <svg class="airbnb-logo" viewBox="0 0 24 24" fill="currentColor"><path d="M12 0C5.374 0 0 5.373 0 12c0 6.628 5.374 12 12 12 6.628 0 12-5.372 12-12 0-6.627-5.372-12-12-12zm.022 4.6c1.26 0 2.28 1.02 2.28 2.28 0 1.26-1.02 2.28-2.28 2.28-1.26 0-2.28-1.02-2.28-2.28 0-1.26 1.02-2.28 2.28-2.28zM18.6 17.64c-.22.86-2.04 3.74-5.56 3.4-1.28-.12-2.46-.72-3.06-1.78-.04-.06-.08-.14-.1-.22-.02-.06-.04-.1-.04-.16-.02-.06-.02-.12-.02-.18 0-.08.02-.14.02-.22.02-.06.04-.12.06-.18.12-.46.46-.96.94-1.44.9-.9 2.12-1.68 3.04-2.46.44-.38.82-.78 1.02-1.2.04-.1.08-.2.1-.3.02-.1.04-.2.04-.32 0-.1-.02-.2-.04-.3-.02-.1-.06-.2-.1-.3-.2-.42-.58-.82-1.02-1.2-.92-.78-2.14-1.56-3.04-2.46-.48-.48-.82-.98-.94-1.44-.02-.06-.04-.12-.06-.18 0-.08-.02-.14-.02-.22 0-.06 0-.12.02-.18 0-.06.02-.1.04-.16.02-.08.06-.16.1-.22.6-1.06 1.78-1.66 3.06-1.78 3.52-.34 5.34 2.54 5.56 3.4.22.86.22 1.72 0 2.58z"/></svg>
+            View on Airbnb
+          </a>
         </div>
-        <div class="scroll-indicator">
-            <svg viewBox="0 0 24 24" fill="none" stroke-width="2"><path d="M12 5v14M19 12l-7 7-7-7"/></svg>
+      </div>
+
+      <!-- STR 2: Designer Ranch Near Clayton -->
+      <div class="str-card fade-in">
+        <div class="photo-grid">
+          <div class="photo-cell main-photo" style="background:url('https://a0.muscache.com/im/pictures/hosting/Hosting-1510833497765585053/original/393a9549-ecf4-4108-913e-db18bf13af79.jpeg?im_w=1200') center/cover;"></div>
+          <div class="photo-cell" style="background:url('https://a0.muscache.com/im/pictures/hosting/Hosting-1510833497765585053/original/7c426681-7db2-41e4-a293-10dfbc5cdba3.jpeg?im_w=720') center/cover;"></div>
+          <div class="photo-cell" style="background:url('https://a0.muscache.com/im/pictures/hosting/Hosting-1510833497765585053/original/c317dc7c-d87c-41cd-bd1b-4846696da353.jpeg?im_w=720') center/cover;"></div>
         </div>
-    </section>
-
-    <!-- ABOUT -->
-    <section class="about" id="about">
-        <div class="container">
-            <div class="about-grid">
-                <div class="about-text fade-in">
-                    <span class="section-label">About Us</span>
-                    <h2 class="section-title">Building Exceptional Spaces &amp; Lasting Relationships</h2>
-                    <p>At Cophia Properties, we view each project as an opportunity to craft exceptional spaces and lasting relationships with trades and tenants. Our commitment to quality, integrity, and customer satisfaction is the foundation of our success.</p>
-                    <p>We elevate spaces, create lasting value, and transform properties into cherished homes — whether through our long-term and short-term rental portfolios or our hands-on property remodeling services.</p>
-                    <p>Led by Katie, whose background in business and passion for real estate drives every decision, Cophia Properties brings a personal touch to every property we manage and every project we undertake.</p>
-                </div>
-                <div class="about-image fade-in">
-                    <div class="image-placeholder">
-                        <!-- Replace with: <img src="images/about-photo.jpg" alt="Cophia Properties team"> -->
-                        Your photo here<br><small style="margin-top:8px;display:block;opacity:0.6">Replace with a professional team or property photo</small>
-                    </div>
-                </div>
-            </div>
-            <div class="about-values fade-in">
-                <div class="value-item">
-                    <div class="value-icon">
-                        <svg viewBox="0 0 24 24" stroke-width="1.5"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
-                    </div>
-                    <h4>Quality</h4>
-                    <p>Every detail matters. We hold ourselves to the highest standards in management and construction.</p>
-                </div>
-                <div class="value-item">
-                    <div class="value-icon">
-                        <svg viewBox="0 0 24 24" stroke-width="1.5"><path d="M20.84 4.61a5.5 5.5 0 00-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 00-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 000-7.78z"/></svg>
-                    </div>
-                    <h4>Integrity</h4>
-                    <p>Honest, transparent relationships with our tenants, guests, and trade partners.</p>
-                </div>
-                <div class="value-item">
-                    <div class="value-icon">
-                        <svg viewBox="0 0 24 24" stroke-width="1.5"><path d="M22 11.08V12a10 10 0 11-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg>
-                    </div>
-                    <h4>Satisfaction</h4>
-                    <p>Your experience is everything. We go above and beyond to exceed expectations.</p>
-                </div>
-            </div>
+        <div class="str-body">
+          <div class="str-location">University City, MO</div>
+          <h3>Designer Ranch Near Clayton</h3>
+          <p>Located in vibrant University City, this welcoming home puts guests close to dining, culture, and the best of the Loop neighborhood.</p>
+          <div class="str-features">
+            <span class="str-feat">
+              <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 9l9-7 9 7v11a2 2 0 01-2 2H5a2 2 0 01-2-2z"/></svg>
+              Entire Home
+            </span>
+            <span class="str-feat">
+              <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><path d="M12 8v4l3 3"/></svg>
+              Self Check-In
+            </span>
+          </div>
+          <a href="https://www.airbnb.com/rooms/1510833497765585053" target="_blank" rel="noopener" class="airbnb-btn">
+            <svg class="airbnb-logo" viewBox="0 0 24 24" fill="currentColor"><path d="M12 0C5.374 0 0 5.373 0 12c0 6.628 5.374 12 12 12 6.628 0 12-5.372 12-12 0-6.627-5.372-12-12-12zm.022 4.6c1.26 0 2.28 1.02 2.28 2.28 0 1.26-1.02 2.28-2.28 2.28-1.26 0-2.28-1.02-2.28-2.28 0-1.26 1.02-2.28 2.28-2.28zM18.6 17.64c-.22.86-2.04 3.74-5.56 3.4-1.28-.12-2.46-.72-3.06-1.78-.04-.06-.08-.14-.1-.22-.02-.06-.04-.1-.04-.16-.02-.06-.02-.12-.02-.18 0-.08.02-.14.02-.22.02-.06.04-.12.06-.18.12-.46.46-.96.94-1.44.9-.9 2.12-1.68 3.04-2.46.44-.38.82-.78 1.02-1.2.04-.1.08-.2.1-.3.02-.1.04-.2.04-.32 0-.1-.02-.2-.04-.3-.02-.1-.06-.2-.1-.3-.2-.42-.58-.82-1.02-1.2-.92-.78-2.14-1.56-3.04-2.46-.48-.48-.82-.98-.94-1.44-.02-.06-.04-.12-.06-.18 0-.08-.02-.14-.02-.22 0-.06 0-.12.02-.18 0-.06.02-.1.04-.16.02-.08.06-.16.1-.22.6-1.06 1.78-1.66 3.06-1.78 3.52-.34 5.34 2.54 5.56 3.4.22.86.22 1.72 0 2.58z"/></svg>
+            View on Airbnb
+          </a>
         </div>
-    </section>
+      </div>
 
-    <!-- SERVICES -->
-    <section class="services" id="services">
-        <div class="container">
-            <div class="section-header fade-in">
-                <span class="section-label">What We Do</span>
-                <h2 class="section-title">Our Services</h2>
-                <p class="section-subtitle">From long-term rental management to short-term vacation stays and full property remodels — Cophia Properties does it all.</p>
-            </div>
-            <div class="services-grid">
-                <div class="service-card fade-in">
-                    <div class="service-icon">
-                        <svg viewBox="0 0 24 24" stroke-width="1.5"><path d="M3 9l9-7 9 7v11a2 2 0 01-2 2H5a2 2 0 01-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg>
-                    </div>
-                    <h3>Long-Term Rentals</h3>
-                    <p>Quality residential properties maintained to the highest standards, providing comfortable homes for our valued tenants.</p>
-                    <a href="#ltr" class="btn btn-primary">View Properties</a>
-                </div>
-                <div class="service-card fade-in">
-                    <div class="service-icon">
-                        <svg viewBox="0 0 24 24" stroke-width="1.5"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0118 0z"/><circle cx="12" cy="10" r="3"/></svg>
-                    </div>
-                    <h3>Short-Term Rentals</h3>
-                    <p>Beautifully furnished vacation properties available for booking. Experience the comfort of a Cophia home on your next getaway.</p>
-                    <a href="#str" class="btn btn-primary">Book a Stay</a>
-                </div>
-                <div class="service-card fade-in">
-                    <div class="service-icon">
-                        <svg viewBox="0 0 24 24" stroke-width="1.5"><path d="M14.7 6.3a1 1 0 000 1.4l1.6 1.6a1 1 0 001.4 0l3.77-3.77a6 6 0 01-7.94 7.94l-6.91 6.91a2.12 2.12 0 01-3-3l6.91-6.91a6 6 0 017.94-7.94l-3.76 3.76z"/></svg>
-                    </div>
-                    <h3>Remodeling</h3>
-                    <p>Full-service property renovations that transform spaces. From kitchens to complete overhauls, we bring your vision to life.</p>
-                    <a href="#remodeling" class="btn btn-primary">See Our Work</a>
-                </div>
-            </div>
+      <!-- STR 3 -->
+      <div class="str-card fade-in">
+        <div class="photo-grid">
+          <div class="photo-cell main-photo" style="background:url('https://a0.muscache.com/im/pictures/prohost-api/Hosting-1558934020261673710/original/c19d1ba0-637c-49a0-b578-7bfbf85e2df2.jpeg?im_w=1200') center/cover;"></div>
+          <div class="photo-cell" style="background:url('https://a0.muscache.com/im/pictures/prohost-api/Hosting-1558934020261673710/original/35a86e45-c5cb-46d1-8e78-e1e2051c4815.jpeg?im_w=720') center/cover;"></div>
+          <div class="photo-cell" style="background:url('https://a0.muscache.com/im/pictures/prohost-api/Hosting-1558934020261673710/original/57ea5c52-fb0c-4ae9-b69f-dc2e62809ab3.jpeg?im_w=720') center/cover;"></div>
         </div>
-    </section>
-
-    <!-- LONG-TERM RENTALS -->
-    <section class="properties-ltr" id="ltr">
-        <div class="container">
-            <div class="section-header fade-in">
-                <span class="section-label">Long-Term Rentals</span>
-                <h2 class="section-title">Our Rental Portfolio</h2>
-                <p class="section-subtitle">Quality homes in great locations. All properties are currently occupied by wonderful tenants.</p>
-            </div>
-            <div class="property-grid">
-                <!-- LTR Property 1 -->
-                <div class="property-card fade-in">
-                    <div class="property-image">
-                        <span class="tag">Occupied</span>
-                        <!-- Replace with: <img src="images/ltr/property-1.jpg" alt="Rental property"> -->
-                        Property Photo
-                    </div>
-                    <div class="property-info">
-                        <h4>Single Family Home</h4>
-                        <div class="location">
-                            <svg viewBox="0 0 24 24" stroke-width="2"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0118 0z"/><circle cx="12" cy="10" r="3"/></svg>
-                            City, State
-                        </div>
-                    </div>
-                </div>
-                <!-- LTR Property 2 -->
-                <div class="property-card fade-in">
-                    <div class="property-image">
-                        <span class="tag">Occupied</span>
-                        Property Photo
-                    </div>
-                    <div class="property-info">
-                        <h4>Single Family Home</h4>
-                        <div class="location">
-                            <svg viewBox="0 0 24 24" stroke-width="2"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0118 0z"/><circle cx="12" cy="10" r="3"/></svg>
-                            City, State
-                        </div>
-                    </div>
-                </div>
-                <!-- LTR Property 3 -->
-                <div class="property-card fade-in">
-                    <div class="property-image">
-                        <span class="tag">Occupied</span>
-                        Property Photo
-                    </div>
-                    <div class="property-info">
-                        <h4>Single Family Home</h4>
-                        <div class="location">
-                            <svg viewBox="0 0 24 24" stroke-width="2"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0118 0z"/><circle cx="12" cy="10" r="3"/></svg>
-                            City, State
-                        </div>
-                    </div>
-                </div>
-                <!-- LTR Property 4 -->
-                <div class="property-card fade-in">
-                    <div class="property-image">
-                        <span class="tag">Occupied</span>
-                        Property Photo
-                    </div>
-                    <div class="property-info">
-                        <h4>Single Family Home</h4>
-                        <div class="location">
-                            <svg viewBox="0 0 24 24" stroke-width="2"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0118 0z"/><circle cx="12" cy="10" r="3"/></svg>
-                            City, State
-                        </div>
-                    </div>
-                </div>
-            </div>
+        <div class="str-body">
+          <div class="str-location">Innsbrook, MO</div>
+          <h3>Innsbrook Turtle Cove Escape</h3>
+          <p>A lakeside escape at Innsbrook Resort — your perfect group retreat with space for up to 16 guests surrounded by nature and tranquility.</p>
+          <div class="str-features">
+            <span class="str-feat">
+              <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M17 21v-2a4 4 0 00-4-4H5a4 4 0 00-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 00-3-3.87"/><path d="M16 3.13a4 4 0 010 7.75"/></svg>
+              Up to 16 Guests
+            </span>
+            <span class="str-feat">
+              <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+              Resort Access
+            </span>
+          </div>
+          <a href="https://www.airbnb.com/rooms/1558934020261673710" target="_blank" rel="noopener" class="airbnb-btn">
+            <svg class="airbnb-logo" viewBox="0 0 24 24" fill="currentColor"><path d="M12 0C5.374 0 0 5.373 0 12c0 6.628 5.374 12 12 12 6.628 0 12-5.372 12-12 0-6.627-5.372-12-12-12zm.022 4.6c1.26 0 2.28 1.02 2.28 2.28 0 1.26-1.02 2.28-2.28 2.28-1.26 0-2.28-1.02-2.28-2.28 0-1.26 1.02-2.28 2.28-2.28zM18.6 17.64c-.22.86-2.04 3.74-5.56 3.4-1.28-.12-2.46-.72-3.06-1.78-.04-.06-.08-.14-.1-.22-.02-.06-.04-.1-.04-.16-.02-.06-.02-.12-.02-.18 0-.08.02-.14.02-.22.02-.06.04-.12.06-.18.12-.46.46-.96.94-1.44.9-.9 2.12-1.68 3.04-2.46.44-.38.82-.78 1.02-1.2.04-.1.08-.2.1-.3.02-.1.04-.2.04-.32 0-.1-.02-.2-.04-.3-.02-.1-.06-.2-.1-.3-.2-.42-.58-.82-1.02-1.2-.92-.78-2.14-1.56-3.04-2.46-.48-.48-.82-.98-.94-1.44-.02-.06-.04-.12-.06-.18 0-.08-.02-.14-.02-.22 0-.06 0-.12.02-.18 0-.06.02-.1.04-.16.02-.08.06-.16.1-.22.6-1.06 1.78-1.66 3.06-1.78 3.52-.34 5.34 2.54 5.56 3.4.22.86.22 1.72 0 2.58z"/></svg>
+            View on Airbnb
+          </a>
         </div>
-    </section>
+      </div>
 
-    <!-- SHORT-TERM RENTALS -->
-    <section class="properties-str" id="str">
-        <div class="container">
-            <div class="section-header fade-in">
-                <span class="section-label">Short-Term Rentals</span>
-                <h2 class="section-title">Book Your Next Stay</h2>
-                <p class="section-subtitle">Fully furnished vacation homes ready for your next getaway. Book directly through Airbnb.</p>
-            </div>
-            <div class="property-grid">
-                <!-- STR Property 1 -->
-                <div class="property-card fade-in">
-                    <div class="property-image">
-                        <span class="tag">Book Now</span>
-                        <!-- Replace with: <img src="images/str/property-1.jpg" alt="Vacation rental"> -->
-                        Property Photo
-                    </div>
-                    <div class="property-info">
-                        <h4>Vacation Home</h4>
-                        <div class="location">
-                            <svg viewBox="0 0 24 24" stroke-width="2"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0118 0z"/><circle cx="12" cy="10" r="3"/></svg>
-                            123 Street Address, City, State
-                        </div>
-                        <a href="#" class="btn btn-primary" target="_blank" rel="noopener">
-                            <svg viewBox="0 0 24 24" width="16" height="16" stroke="currentColor" fill="none" stroke-width="2"><path d="M18 13v6a2 2 0 01-2 2H5a2 2 0 01-2-2V8a2 2 0 012-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>
-                            Book on Airbnb
-                        </a>
-                    </div>
-                </div>
-                <!-- STR Property 2 -->
-                <div class="property-card fade-in">
-                    <div class="property-image">
-                        <span class="tag">Book Now</span>
-                        Property Photo
-                    </div>
-                    <div class="property-info">
-                        <h4>Vacation Home</h4>
-                        <div class="location">
-                            <svg viewBox="0 0 24 24" stroke-width="2"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0118 0z"/><circle cx="12" cy="10" r="3"/></svg>
-                            456 Street Address, City, State
-                        </div>
-                        <a href="#" class="btn btn-primary" target="_blank" rel="noopener">
-                            <svg viewBox="0 0 24 24" width="16" height="16" stroke="currentColor" fill="none" stroke-width="2"><path d="M18 13v6a2 2 0 01-2 2H5a2 2 0 01-2-2V8a2 2 0 012-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>
-                            Book on Airbnb
-                        </a>
-                    </div>
-                </div>
-                <!-- STR Property 3 -->
-                <div class="property-card fade-in">
-                    <div class="property-image">
-                        <span class="tag">Book Now</span>
-                        Property Photo
-                    </div>
-                    <div class="property-info">
-                        <h4>Vacation Home</h4>
-                        <div class="location">
-                            <svg viewBox="0 0 24 24" stroke-width="2"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0118 0z"/><circle cx="12" cy="10" r="3"/></svg>
-                            789 Street Address, City, State
-                        </div>
-                        <a href="#" class="btn btn-primary" target="_blank" rel="noopener">
-                            <svg viewBox="0 0 24 24" width="16" height="16" stroke="currentColor" fill="none" stroke-width="2"><path d="M18 13v6a2 2 0 01-2 2H5a2 2 0 01-2-2V8a2 2 0 012-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>
-                            Book on Airbnb
-                        </a>
-                    </div>
-                </div>
-                <!-- STR Property 4 -->
-                <div class="property-card fade-in">
-                    <div class="property-image">
-                        <span class="tag">Book Now</span>
-                        Property Photo
-                    </div>
-                    <div class="property-info">
-                        <h4>Vacation Home</h4>
-                        <div class="location">
-                            <svg viewBox="0 0 24 24" stroke-width="2"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0118 0z"/><circle cx="12" cy="10" r="3"/></svg>
-                            101 Street Address, City, State
-                        </div>
-                        <a href="#" class="btn btn-primary" target="_blank" rel="noopener">
-                            <svg viewBox="0 0 24 24" width="16" height="16" stroke="currentColor" fill="none" stroke-width="2"><path d="M18 13v6a2 2 0 01-2 2H5a2 2 0 01-2-2V8a2 2 0 012-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>
-                            Book on Airbnb
-                        </a>
-                    </div>
-                </div>
-            </div>
+    </div>
+  </div>
+</section>
+
+<!-- LTR SECTION -->
+<section id="ltr">
+  <div style="max-width:1200px; margin:0 auto;">
+    <div class="section-label fade-in">Residential Rentals</div>
+    <h2 class="section-title fade-in">Long-Term Rentals</h2>
+    <p style="font-size:0.9rem;color:var(--text-muted);font-weight:300;max-width:560px;line-height:1.75;margin-bottom:3rem;" class="fade-in">
+      Quality homes in established St. Louis neighborhoods. We take pride in well-maintained properties and responsive management for our long-term residents.
+    </p>
+
+    <div class="ltr-grid">
+
+      <!-- LTR 1: Maplewood (2255 Yale Ave) -->
+      <div class="ltr-card fade-in">
+        <div class="ltr-photo">
+          <div class="ltr-photo-inner">
+            <div class="ltr-photo-cell" style="background:url('https://photos.zillowstatic.com/fp/38e9b35102579870c69f99fd6c561a1b-cc_ft_1536.jpg') center/cover;"></div>
+            <div class="ltr-photo-cell" style="background:url('https://photos.zillowstatic.com/fp/1e237d52d8b59911cfb3c746a1b3ace8-cc_ft_1536.jpg') center/cover;"></div>
+          </div>
+          <div class="ltr-overlay-tag">Occupied</div>
         </div>
-    </section>
-
-    <!-- REMODELING -->
-    <section class="remodeling" id="remodeling" style="background: var(--cream);">
-        <div class="container">
-            <div class="section-header fade-in">
-                <span class="section-label">Remodeling</span>
-                <h2 class="section-title">Transformations by Cophia</h2>
-                <p class="section-subtitle">See the difference quality craftsmanship makes. Before and after our renovation projects.</p>
-            </div>
-            <div class="remodel-grid">
-                <!-- Remodel 1 -->
-                <div class="remodel-card fade-in">
-                    <div class="remodel-images">
-                        <div class="before">
-                            <!-- Replace with: <img src="images/remodel/project-1-before.jpg" alt="Before renovation"> -->
-                            Before Photo
-                            <span class="label">Before</span>
-                        </div>
-                        <div class="divider"></div>
-                        <div class="after">
-                            <!-- Replace with: <img src="images/remodel/project-1-after.jpg" alt="After renovation"> -->
-                            After Photo
-                            <span class="label">After</span>
-                        </div>
-                    </div>
-                    <div class="remodel-info">
-                        <h4>Kitchen Renovation</h4>
-                        <p>Complete kitchen overhaul with modern finishes, new cabinetry, and updated appliances.</p>
-                    </div>
-                </div>
-                <!-- Remodel 2 -->
-                <div class="remodel-card fade-in">
-                    <div class="remodel-images">
-                        <div class="before">
-                            Before Photo
-                            <span class="label">Before</span>
-                        </div>
-                        <div class="divider"></div>
-                        <div class="after">
-                            After Photo
-                            <span class="label">After</span>
-                        </div>
-                    </div>
-                    <div class="remodel-info">
-                        <h4>Bathroom Remodel</h4>
-                        <p>Modern bathroom transformation with premium tile, fixtures, and custom vanity.</p>
-                    </div>
-                </div>
-                <!-- Remodel 3 -->
-                <div class="remodel-card fade-in">
-                    <div class="remodel-images">
-                        <div class="before">
-                            Before Photo
-                            <span class="label">Before</span>
-                        </div>
-                        <div class="divider"></div>
-                        <div class="after">
-                            After Photo
-                            <span class="label">After</span>
-                        </div>
-                    </div>
-                    <div class="remodel-info">
-                        <h4>Full Property Renovation</h4>
-                        <p>Complete property transformation from dated to modern, maximizing both appeal and value.</p>
-                    </div>
-                </div>
-            </div>
+        <div class="ltr-body">
+          <div class="ltr-city">Maplewood, MO</div>
+          <h3>Maplewood Residence</h3>
+          <div class="ltr-privacy">
+            <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="11" width="18" height="11" rx="2" ry="2"/><path d="M7 11V7a5 5 0 0110 0v4"/></svg>
+            Tenant privacy protected — exact address available upon inquiry
+          </div>
         </div>
-    </section>
+      </div>
 
-    <!-- CONTACT -->
-    <section class="contact" id="contact">
-        <div class="container">
-            <div class="section-header fade-in">
-                <span class="section-label">Get In Touch</span>
-                <h2 class="section-title">Contact Us</h2>
-                <p class="section-subtitle">Whether you're looking for a rental, interested in booking a stay, or ready to start a remodel — we'd love to hear from you.</p>
-            </div>
-            <div class="contact-grid">
-                <div class="contact-info-list fade-in">
-                    <div class="contact-item">
-                        <div class="contact-item-icon">
-                            <svg viewBox="0 0 24 24" stroke-width="1.5"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
-                        </div>
-                        <div>
-                            <h4>Email</h4>
-                            <a href="mailto:katie@cophiaproperties.com">katie@cophiaproperties.com</a>
-                        </div>
-                    </div>
-                    <div class="contact-item">
-                        <div class="contact-item-icon">
-                            <svg viewBox="0 0 24 24" stroke-width="1.5"><path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07 19.5 19.5 0 01-6-6 19.79 19.79 0 01-3.07-8.67A2 2 0 014.11 2h3a2 2 0 012 1.72c.127.96.361 1.903.7 2.81a2 2 0 01-.45 2.11L8.09 9.91a16 16 0 006 6l1.27-1.27a2 2 0 012.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0122 16.92z"/></svg>
-                        </div>
-                        <div>
-                            <h4>Phone</h4>
-                            <a href="tel:+13143254104">(314) 325-4104</a>
-                        </div>
-                    </div>
-                    <div class="contact-item">
-                        <div class="contact-item-icon">
-                            <svg viewBox="0 0 24 24" stroke-width="1.5"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0118 0z"/><circle cx="12" cy="10" r="3"/></svg>
-                        </div>
-                        <div>
-                            <h4>Service Area</h4>
-                            <p>Serving communities with quality properties</p>
-                        </div>
-                    </div>
-                </div>
-                <form class="contact-form fade-in" action="https://formspree.io/f/YOUR_FORM_ID" method="POST">
-                    <div class="form-row">
-                        <div class="form-group">
-                            <label for="name">Name</label>
-                            <input type="text" id="name" name="name" required placeholder="Your name">
-                        </div>
-                        <div class="form-group">
-                            <label for="email">Email</label>
-                            <input type="email" id="email" name="email" required placeholder="Your email">
-                        </div>
-                    </div>
-                    <div class="form-group">
-                        <label for="interest">I'm Interested In</label>
-                        <select id="interest" name="interest">
-                            <option value="">Select an option</option>
-                            <option value="ltr">Long-Term Rental</option>
-                            <option value="str">Short-Term Rental / Booking</option>
-                            <option value="remodel">Remodeling Services</option>
-                            <option value="other">Other</option>
-                        </select>
-                    </div>
-                    <div class="form-group">
-                        <label for="message">Message</label>
-                        <textarea id="message" name="message" required placeholder="Tell us about your needs..."></textarea>
-                    </div>
-                    <button type="submit" class="btn btn-primary">Send Message</button>
-                </form>
-            </div>
+      <!-- LTR 2: U-City (7739 Peach Tree Ln) -->
+      <div class="ltr-card fade-in">
+        <div class="ltr-photo">
+          <div class="ltr-photo-inner">
+            <div class="ltr-photo-cell" style="background:url('https://a0.muscache.com/im/pictures/hosting/Hosting-1551591718173477288/original/56200886-da8b-4db2-8afb-745e6c99d91a.jpeg?im_w=1200') center/cover;"></div>
+            <div class="ltr-photo-cell" style="background:url('https://a0.muscache.com/im/pictures/hosting/Hosting-1551591718173477288/original/4041fd02-3ccd-447c-813c-76360effa82c.jpeg?im_w=720') center/cover;"></div>
+          </div>
+          <div class="ltr-overlay-tag">Occupied</div>
         </div>
-    </section>
-
-    <!-- FOOTER -->
-    <footer class="footer">
-        <div class="container">
-            <div class="footer-logo"><img src="images/logo.png" srcset="images/logo@2x.png 2x" alt="Cophia Properties"></div>
-            <p>Elevating Spaces &bull; Creating Value &bull; Building Relationships</p>
-            <div class="footer-divider"></div>
-            <p>&copy; 2026 Cophia Properties. All rights reserved.</p>
+        <div class="ltr-body">
+          <div class="ltr-city">University City, MO</div>
+          <h3>University City Home</h3>
+          <div class="ltr-privacy">
+            <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="11" width="18" height="11" rx="2" ry="2"/><path d="M7 11V7a5 5 0 0110 0v4"/></svg>
+            Tenant privacy protected — exact address available upon inquiry
+          </div>
         </div>
-    </footer>
+      </div>
 
-    <script>
-        // Mobile nav toggle
-        const navToggle = document.getElementById('navToggle');
-        const navLinks = document.getElementById('navLinks');
-        navToggle.addEventListener('click', () => navLinks.classList.toggle('open'));
-        navLinks.querySelectorAll('a').forEach(link =>
-            link.addEventListener('click', () => navLinks.classList.remove('open'))
-        );
+      <!-- LTR 2b: University City Home II (530 Westview) -->
+      <div class="ltr-card fade-in">
+        <div class="ltr-photo">
+          <div class="ltr-photo-inner">
+            <div class="ltr-photo-cell" style="background:url('530 Westview Exterior.JPEG') center/cover;"></div>
+            <div class="ltr-photo-cell" style="background:url('530 Westview Interior.jpg') center/cover;"></div>
+          </div>
+          <div class="ltr-overlay-tag">Occupied</div>
+        </div>
+        <div class="ltr-body">
+          <div class="ltr-city">University City, MO</div>
+          <h3>University City Home II</h3>
+          <div class="ltr-privacy">
+            <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="11" width="18" height="11" rx="2" ry="2"/><path d="M7 11V7a5 5 0 0110 0v4"/></svg>
+            Tenant privacy protected — exact address available upon inquiry
+          </div>
+        </div>
+      </div>
 
-        // Scroll animation
-        const observer = new IntersectionObserver((entries) => {
-            entries.forEach(entry => {
-                if (entry.isIntersecting) {
-                    entry.target.classList.add('visible');
-                }
-            });
-        }, { threshold: 0.1, rootMargin: '0px 0px -50px 0px' });
+      <!-- LTR 3: Lafayette Square (1432 Dolman St) -->
+      <div class="ltr-card fade-in">
+        <div class="ltr-photo">
+          <div class="ltr-photo-inner">
+            <div class="ltr-photo-cell" style="background:url('https://photos.zillowstatic.com/fp/645a6e2fcecd8efe727b3f78253381b5-cc_ft_1536.jpg') center/cover;"></div>
+            <div class="ltr-photo-cell" style="background:url('https://photos.zillowstatic.com/fp/e495d2c265f83314b4458aeae40c86a6-cc_ft_1536.jpg') center/cover;"></div>
+          </div>
+          <div class="ltr-overlay-tag">Occupied</div>
+        </div>
+        <div class="ltr-body">
+          <div class="ltr-city">Lafayette Square, St. Louis</div>
+          <h3>Lafayette Square Property</h3>
+          <div class="ltr-privacy">
+            <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="11" width="18" height="11" rx="2" ry="2"/><path d="M7 11V7a5 5 0 0110 0v4"/></svg>
+            Tenant privacy protected — exact address available upon inquiry
+          </div>
+        </div>
+      </div>
 
-        document.querySelectorAll('.fade-in').forEach(el => observer.observe(el));
+      <!-- LTR 4: Gate District #1 -->
+      <div class="ltr-card fade-in">
+        <div class="ltr-photo">
+          <div class="ltr-photo-inner">
+            <div class="ltr-photo-cell" style="background:url('2714 St Vincent003 copy.jpg') center/cover;"></div>
+            <div class="ltr-photo-cell" style="background:url('2714 St Vincent008 copy.jpg') center/cover;"></div>
+          </div>
+          <div class="ltr-overlay-tag">Occupied</div>
+        </div>
+        <div class="ltr-body">
+          <div class="ltr-city">Gate District, St. Louis</div>
+          <h3>Gate District Home I</h3>
+          <div class="ltr-privacy">
+            <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="11" width="18" height="11" rx="2" ry="2"/><path d="M7 11V7a5 5 0 0110 0v4"/></svg>
+            Tenant privacy protected — exact address available upon inquiry
+          </div>
+        </div>
+      </div>
 
-        // Active nav highlight on scroll
-        const sections = document.querySelectorAll('section[id]');
-        window.addEventListener('scroll', () => {
-            const scrollY = window.scrollY + 100;
-            sections.forEach(section => {
-                const top = section.offsetTop;
-                const height = section.offsetHeight;
-                const id = section.getAttribute('id');
-                const link = document.querySelector(`.nav-links a[href="#${id}"]`);
-                if (link) {
-                    if (scrollY >= top && scrollY < top + height) {
-                        link.classList.add('active');
-                    } else {
-                        link.classList.remove('active');
-                    }
-                }
-            });
-        });
-    </script>
+      <!-- LTR 5: Gate District #2 -->
+      <div class="ltr-card fade-in">
+        <div class="ltr-photo">
+          <div class="ltr-photo-inner">
+            <div class="ltr-photo-cell" style="background:url('Park 1.jpeg') center/cover;"></div>
+            <div class="ltr-photo-cell" style="background:url('Park 2.jpeg') center/cover;"></div>
+          </div>
+          <div class="ltr-overlay-tag">Occupied</div>
+        </div>
+        <div class="ltr-body">
+          <div class="ltr-city">Gate District, St. Louis</div>
+          <h3>Gate District Home II</h3>
+          <div class="ltr-privacy">
+            <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="11" width="18" height="11" rx="2" ry="2"/><path d="M7 11V7a5 5 0 0110 0v4"/></svg>
+            Tenant privacy protected — exact address available upon inquiry
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- RENOVATIONS -->
+<section id="renovations">
+  <div style="max-width:1100px; margin:0 auto;">
+    <div class="section-label fade-in">Before & After</div>
+    <h2 class="section-title fade-in">Renovation Portfolio</h2>
+    <p style="font-size:0.9rem;color:var(--text-muted);font-weight:300;max-width:560px;line-height:1.75;margin-bottom:3rem;" class="fade-in">
+      We breathe new life into properties — structural, cosmetic, and everything in between. Here's a look at some of our completed transformations.
+    </p>
+
+    <div class="reno-grid">
+
+      <!-- Reno 1: Cornell Ave -->
+      <div class="reno-card fade-in">
+        <div class="before-after">
+          <div class="ba-panel">
+            <div class="ba-photo" style="background:url('cornell exterior.webp') center/cover;"></div>
+            <div class="ba-label before-label">Exterior</div>
+          </div>
+          <div class="ba-panel">
+            <div class="ba-photo after-photo" style="background:url('cornell interior.webp') center/cover;"></div>
+            <div class="ba-label after-label">Interior</div>
+          </div>
+        </div>
+        <div class="reno-body">
+          <div class="reno-location">University City, MO</div>
+          <h3>Cornell Avenue</h3>
+          <div class="reno-tags">
+            <span class="reno-tag">Full Renovation</span>
+            <span class="reno-tag">Interior</span>
+            <span class="reno-tag">Exterior</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Reno 2: Stanford Ave -->
+      <div class="reno-card fade-in">
+        <div class="before-after">
+          <div class="ba-panel">
+            <div class="ba-photo" style="background:url('7023 Standord 001.jpg') center/cover;"></div>
+            <div class="ba-label before-label">Exterior</div>
+          </div>
+          <div class="ba-panel">
+            <div class="ba-photo after-photo" style="background:url('7023 Standord 008.jpg') center/cover;"></div>
+            <div class="ba-label after-label">Interior</div>
+          </div>
+        </div>
+        <div class="reno-body">
+          <div class="reno-location">University City, MO</div>
+          <h3>Stanford Avenue</h3>
+          <div class="reno-tags">
+            <span class="reno-tag">Full Renovation</span>
+            <span class="reno-tag">Kitchen</span>
+            <span class="reno-tag">Bathrooms</span>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- CONTACT -->
+<section id="contact">
+  <div style="max-width:1100px; margin:0 auto;">
+    <div class="section-label fade-in">Get In Touch</div>
+  </div>
+  <div class="contact-inner">
+    <div class="contact-left fade-in">
+      <h2>Let's Talk<br><em style="font-family:'Cormorant Garamond',serif;font-style:italic;color:var(--forest);">Properties</em></h2>
+      <p>Whether you're interested in renting, have a property to renovate, or want to learn more about what we do — Katie is happy to connect.</p>
+
+      <div class="contact-detail">
+        <div class="contact-icon">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07A19.5 19.5 0 013.07 9.81a19.79 19.79 0 01-3.07-8.67A2 2 0 012 .99h3a2 2 0 012 1.72 12.84 12.84 0 00.7 2.81 2 2 0 01-.45 2.11L6.09 8.91a16 16 0 006 6l1.27-1.27a2 2 0 012.11-.45 12.84 12.84 0 002.81.7A2 2 0 0122 16.92z"/></svg>
+        </div>
+        <div class="contact-text">
+          <div class="contact-text-label">Phone</div>
+          <a href="tel:3143254104">314-325-4104</a>
+        </div>
+      </div>
+
+      <div class="contact-detail">
+        <div class="contact-icon">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 21v-2a4 4 0 00-4-4H8a4 4 0 00-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>
+        </div>
+        <div class="contact-text">
+          <div class="contact-text-label">Contact</div>
+          Katie Hoffman
+        </div>
+      </div>
+
+      <div class="contact-detail">
+        <div class="contact-icon">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0118 0z"/><circle cx="12" cy="10" r="3"/></svg>
+        </div>
+        <div class="contact-text">
+          <div class="contact-text-label">Service Area</div>
+          St. Louis Metro Area, MO
+        </div>
+      </div>
+    </div>
+
+    <div class="contact-form fade-in">
+      <h3>Send a Message</h3>
+      <div class="form-group">
+        <label>Your Name</label>
+        <input type="text" placeholder="Full name" />
+      </div>
+      <div class="form-group">
+        <label>Email Address</label>
+        <input type="email" placeholder="email@example.com" />
+      </div>
+      <div class="form-group">
+        <label>Phone Number</label>
+        <input type="tel" placeholder="(314) 000-0000" />
+      </div>
+      <div class="form-group">
+        <label>I'm Interested In</label>
+        <select>
+          <option value="">Select a topic...</option>
+          <option>Short-Term Rental Inquiry</option>
+          <option>Long-Term Rental Inquiry</option>
+          <option>Renovation Services</option>
+          <option>General Question</option>
+        </select>
+      </div>
+      <div class="form-group">
+        <label>Message</label>
+        <textarea placeholder="Tell us a little about what you're looking for..."></textarea>
+      </div>
+      <button class="submit-btn" onclick="handleSubmit(event)">Send Message</button>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-logo">Cophia <span>Properties</span></div>
+  <nav class="footer-links">
+    <a href="#str">STR</a>
+    <a href="#ltr">LTR</a>
+    <a href="#renovations">Renovations</a>
+    <a href="#contact">Contact</a>
+  </nav>
+  <div class="footer-copy">© 2025 Cophia Properties · St. Louis, MO</div>
+</footer>
+
+<script>
+  // Scroll-triggered fade-ins
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        entry.target.classList.add('visible');
+      }
+    });
+  }, { threshold: 0.02, rootMargin: '0px 0px 50px 0px' });
+
+  document.querySelectorAll('.fade-in').forEach(el => observer.observe(el));
+
+  // Fallback: make everything visible after 2s in case observer doesn't fire
+  setTimeout(() => {
+    document.querySelectorAll('.fade-in').forEach(el => el.classList.add('visible'));
+  }, 2000);
+
+  // Stagger child cards
+  document.querySelectorAll('.str-grid, .ltr-grid, .reno-grid, .services-grid').forEach(grid => {
+    Array.from(grid.children).forEach((child, i) => {
+      child.style.transitionDelay = `${i * 0.1}s`;
+    });
+  });
+
+  // Nav scroll shrink
+  window.addEventListener('scroll', () => {
+    const nav = document.querySelector('nav');
+    if (window.scrollY > 60) {
+      nav.style.padding = '0.8rem 4rem';
+    } else {
+      nav.style.padding = '1.2rem 4rem';
+    }
+  });
+
+  // Form submit handler
+  function handleSubmit(e) {
+    e.preventDefault();
+    const btn = e.target;
+    btn.textContent = 'Message Sent ✓';
+    btn.style.background = 'var(--forest)';
+    btn.style.color = '#fff';
+    setTimeout(() => {
+      btn.textContent = 'Send Message';
+      btn.style.background = '';
+      btn.style.color = '';
+    }, 3000);
+  }
+</script>
 
 </body>
 </html>
