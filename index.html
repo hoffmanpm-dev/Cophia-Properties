@@ -84,6 +84,23 @@
     }
     .nav-cta:hover { background: var(--gold) !important; color: var(--forest-deep) !important; }
 
+
+    /* ── MOBILE MENU ── */
+    .nav-mobile { display: none; align-items: center; gap: 0.9rem; }
+    .nav-book {
+      font-size: 0.7rem; font-weight: 600; letter-spacing: 0.12em; text-transform: uppercase;
+      text-decoration: none; background: var(--gold); color: var(--forest-deep);
+      padding: 0.55rem 0.9rem; border-radius: 2px; white-space: nowrap;
+    }
+    .nav-toggle {
+      width: 42px; height: 42px; display: grid; place-content: center; gap: 5px;
+      background: transparent; border: 1px solid rgba(200,168,75,0.45); border-radius: 2px; cursor: pointer; padding: 0;
+    }
+    .nav-toggle span { display: block; width: 20px; height: 2px; background: var(--gold); transition: transform 0.25s, opacity 0.2s; }
+    nav.open .nav-toggle span:nth-child(1) { transform: translateY(7px) rotate(45deg); }
+    nav.open .nav-toggle span:nth-child(2) { opacity: 0; }
+    nav.open .nav-toggle span:nth-child(3) { transform: translateY(-7px) rotate(-45deg); }
+
     /* ── HERO ── */
     .hero {
       height: 100vh;
@@ -458,6 +475,17 @@
     }
     .airbnb-btn:hover { background: var(--gold); color: var(--forest-deep); }
     .airbnb-logo { width: 18px; height: 18px; }
+    .direct-btn {
+      display: flex; align-items: center; justify-content: center; gap: 0.5rem;
+      width: 100%; padding: 0.75rem; margin-top: 0.6rem;
+      background: var(--gold); color: var(--forest-deep);
+      border: 1px solid var(--gold); border-radius: 2px;
+      font-family: 'Jost', sans-serif; font-size: 0.75rem; font-weight: 600;
+      letter-spacing: 0.1em; text-transform: uppercase; text-decoration: none;
+      transition: background 0.2s, color 0.2s;
+    }
+    .direct-btn:hover { background: var(--gold-light); border-color: var(--gold-light); }
+    .direct-btn svg { width: 16px; height: 16px; }
 
     /* ── LTR ── */
     #ltr { padding: 6rem 4rem; background: var(--cream); }
@@ -784,6 +812,7 @@
     .footer-logo span { color: rgba(255,255,255,0.5); font-weight: 300; }
 
     .footer-links { display: flex; gap: 2rem; }
+    nav.footer-links { position: static; padding: 0; background: none; border: 0; backdrop-filter: none; z-index: auto; flex-wrap: wrap; justify-content: flex-start; row-gap: 0.8rem; }
     .footer-links a {
       font-size: 0.72rem;
       letter-spacing: 0.1em;
@@ -837,6 +866,16 @@
     @media (max-width: 900px) {
       nav { padding: 1rem 1.5rem; }
       .nav-links { display: none; }
+      .nav-mobile { display: flex; }
+      nav.open .nav-links {
+        display: flex; flex-direction: column; gap: 0;
+        position: absolute; top: 100%; left: 0; right: 0; margin: 0; padding: 0.5rem 1.5rem 1.5rem;
+        background: rgba(26, 46, 27, 0.98); border-bottom: 1px solid rgba(200,168,75,0.25);
+      }
+      nav.open .nav-links li { border-bottom: 1px solid rgba(255,255,255,0.08); }
+      nav.open .nav-links li:last-child { border-bottom: 0; padding-top: 1rem; }
+      nav.open .nav-links a { display: block; padding: 1rem 0; font-size: 0.85rem; }
+      nav.open .nav-links a.nav-cta { text-align: center; padding: 0.9rem; }
       .services-grid, .str-grid { grid-template-columns: 1fr; }
       .stats-strip { grid-template-columns: repeat(2, 1fr); }
       .contact-inner { grid-template-columns: 1fr; gap: 2.5rem; }
@@ -856,12 +895,19 @@
 <!-- NAV -->
 <nav>
   <a class="nav-logo" href="#">Cophia</a>
-  <ul class="nav-links">
+  <ul class="nav-links" id="site-menu">
     <li><a href="#str">Short-Term Rentals</a></li>
     <li><a href="#ltr">Long-Term Rentals</a></li>
     <li><a href="#we-buy-homes">We Buy Homes</a></li>
+    <li><a href="/book/">Book Direct</a></li>
     <li><a href="#contact" class="nav-cta">Contact Us</a></li>
   </ul>
+  <div class="nav-mobile">
+    <a href="/book/" class="nav-book">Book Direct</a>
+    <button class="nav-toggle" type="button" aria-label="Open menu" aria-expanded="false" aria-controls="site-menu">
+      <span></span><span></span><span></span>
+    </button>
+  </div>
 </nav>
 
 <!-- HERO -->
@@ -948,7 +994,7 @@
     <div class="section-label fade-in">Airbnb Properties</div>
     <h2 class="section-title fade-in">Short-Term Rentals</h2>
     <p style="font-size:0.9rem;color:var(--text-muted);font-weight:300;max-width:560px;line-height:1.75;margin-bottom:3rem;" class="fade-in">
-      Each of our short-term rentals is thoughtfully designed, fully stocked, and ready to welcome guests. Click any listing to book directly on Airbnb.
+      Each of our short-term rentals is thoughtfully designed, fully stocked, and ready to welcome guests. Book on Airbnb, or book directly with us for Peach Tree and Mapleview — just send your dates and we'll confirm personally.
     </p>
 
     <div class="str-grid">
@@ -978,6 +1024,10 @@
             <svg class="airbnb-logo" viewBox="0 0 24 24" fill="currentColor"><path d="M12 0C5.374 0 0 5.373 0 12c0 6.628 5.374 12 12 12 6.628 0 12-5.372 12-12 0-6.627-5.372-12-12-12zm.022 4.6c1.26 0 2.28 1.02 2.28 2.28 0 1.26-1.02 2.28-2.28 2.28-1.26 0-2.28-1.02-2.28-2.28 0-1.26 1.02-2.28 2.28-2.28zM18.6 17.64c-.22.86-2.04 3.74-5.56 3.4-1.28-.12-2.46-.72-3.06-1.78-.04-.06-.08-.14-.1-.22-.02-.06-.04-.1-.04-.16-.02-.06-.02-.12-.02-.18 0-.08.02-.14.02-.22.02-.06.04-.12.06-.18.12-.46.46-.96.94-1.44.9-.9 2.12-1.68 3.04-2.46.44-.38.82-.78 1.02-1.2.04-.1.08-.2.1-.3.02-.1.04-.2.04-.32 0-.1-.02-.2-.04-.3-.02-.1-.06-.2-.1-.3-.2-.42-.58-.82-1.02-1.2-.92-.78-2.14-1.56-3.04-2.46-.48-.48-.82-.98-.94-1.44-.02-.06-.04-.12-.06-.18 0-.08-.02-.14-.02-.22 0-.06 0-.12.02-.18 0-.06.02-.1.04-.16.02-.08.06-.16.1-.22.6-1.06 1.78-1.66 3.06-1.78 3.52-.34 5.34 2.54 5.56 3.4.22.86.22 1.72 0 2.58z"/></svg>
             View on Airbnb
           </a>
+          <a href="/book/?home=peachtree&amp;src=site" class="direct-btn">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="4" width="18" height="18" rx="2"/><path d="M16 2v4M8 2v4M3 10h18"/></svg>
+            Book Direct
+          </a>
         </div>
       </div>
 
@@ -1005,6 +1055,10 @@
           <a href="https://www.airbnb.com/rooms/1510833497765585053" target="_blank" rel="noopener" class="airbnb-btn">
             <svg class="airbnb-logo" viewBox="0 0 24 24" fill="currentColor"><path d="M12 0C5.374 0 0 5.373 0 12c0 6.628 5.374 12 12 12 6.628 0 12-5.372 12-12 0-6.627-5.372-12-12-12zm.022 4.6c1.26 0 2.28 1.02 2.28 2.28 0 1.26-1.02 2.28-2.28 2.28-1.26 0-2.28-1.02-2.28-2.28 0-1.26 1.02-2.28 2.28-2.28zM18.6 17.64c-.22.86-2.04 3.74-5.56 3.4-1.28-.12-2.46-.72-3.06-1.78-.04-.06-.08-.14-.1-.22-.02-.06-.04-.1-.04-.16-.02-.06-.02-.12-.02-.18 0-.08.02-.14.02-.22.02-.06.04-.12.06-.18.12-.46.46-.96.94-1.44.9-.9 2.12-1.68 3.04-2.46.44-.38.82-.78 1.02-1.2.04-.1.08-.2.1-.3.02-.1.04-.2.04-.32 0-.1-.02-.2-.04-.3-.02-.1-.06-.2-.1-.3-.2-.42-.58-.82-1.02-1.2-.92-.78-2.14-1.56-3.04-2.46-.48-.48-.82-.98-.94-1.44-.02-.06-.04-.12-.06-.18 0-.08-.02-.14-.02-.22 0-.06 0-.12.02-.18 0-.06.02-.1.04-.16.02-.08.06-.16.1-.22.6-1.06 1.78-1.66 3.06-1.78 3.52-.34 5.34 2.54 5.56 3.4.22.86.22 1.72 0 2.58z"/></svg>
             View on Airbnb
+          </a>
+          <a href="/book/?home=mapleview&amp;src=site" class="direct-btn">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="4" width="18" height="18" rx="2"/><path d="M16 2v4M8 2v4M3 10h18"/></svg>
+            Book Direct
           </a>
         </div>
       </div>
@@ -1292,12 +1346,29 @@
     <a href="#str">STR</a>
     <a href="#ltr">LTR</a>
     <a href="#we-buy-homes">We Buy Homes</a>
+    <a href="/book/">Book Direct</a>
     <a href="#contact">Contact</a>
   </nav>
   <div class="footer-copy">© 2025 Cophia Properties · St. Louis, MO</div>
 </footer>
 
 <script>
+  // Mobile menu
+  (function () {
+    const nav = document.querySelector('body > nav');
+    const btn = nav && nav.querySelector('.nav-toggle');
+    if (!btn) return;
+    const setOpen = (open) => {
+      nav.classList.toggle('open', open);
+      btn.setAttribute('aria-expanded', open);
+      btn.setAttribute('aria-label', open ? 'Close menu' : 'Open menu');
+    };
+    btn.addEventListener('click', () => setOpen(!nav.classList.contains('open')));
+    nav.querySelectorAll('.nav-links a').forEach(a => a.addEventListener('click', () => setOpen(false)));
+    document.addEventListener('keydown', e => { if (e.key === 'Escape') setOpen(false); });
+    window.addEventListener('resize', () => { if (window.innerWidth > 900) setOpen(false); });
+  })();
+
   // Scroll-triggered fade-ins
   const observer = new IntersectionObserver((entries) => {
     entries.forEach(entry => {
