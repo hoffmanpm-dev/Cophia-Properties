@@ -1,0 +1,1402 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Cophia Properties</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&family=Jost:wght@300;400;500;600&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --forest: #2C4A2E;
+      --forest-deep: #1a2e1b;
+      --forest-light: #3d6640;
+      --gold: #C8A84B;
+      --gold-light: #E0C06A;
+      --gold-pale: #f5ead4;
+      --cream: #FAF7F0;
+      --warm-white: #FDFBF6;
+      --charcoal: #2a2a2a;
+      --text-muted: #7a7a6e;
+      --border: rgba(200, 168, 75, 0.2);
+    }
+
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      font-family: 'Jost', sans-serif;
+      background: var(--warm-white);
+      color: var(--charcoal);
+      overflow-x: hidden;
+    }
+
+    /* ── NAV ── */
+    nav {
+      position: fixed;
+      top: 0; left: 0; right: 0;
+      z-index: 100;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 1.2rem 4rem;
+      background: rgba(26, 46, 27, 0.96);
+      backdrop-filter: blur(12px);
+      border-bottom: 1px solid rgba(200,168,75,0.15);
+      transition: padding 0.3s;
+    }
+
+    .nav-logo {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 1.6rem;
+      font-weight: 400;
+      color: var(--gold);
+      letter-spacing: 0.04em;
+      text-decoration: none;
+    }
+    .nav-logo span { color: #fff; font-weight: 300; }
+
+    .nav-links {
+      display: flex;
+      gap: 2.5rem;
+      list-style: none;
+    }
+    .nav-links a {
+      font-size: 0.78rem;
+      font-weight: 500;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: rgba(255,255,255,0.75);
+      text-decoration: none;
+      transition: color 0.2s;
+    }
+    .nav-links a:hover { color: var(--gold); }
+
+    .nav-cta {
+      background: transparent;
+      border: 1px solid var(--gold);
+      color: var(--gold) !important;
+      padding: 0.5rem 1.2rem;
+      border-radius: 2px;
+      transition: background 0.2s, color 0.2s !important;
+    }
+    .nav-cta:hover { background: var(--gold) !important; color: var(--forest-deep) !important; }
+
+    /* ── HERO ── */
+    .hero {
+      height: 100vh;
+      min-height: 680px;
+      display: grid;
+      place-items: center;
+      background: linear-gradient(160deg, var(--forest-deep) 0%, var(--forest) 55%, #3a5e3c 100%);
+      position: relative;
+      overflow: hidden;
+    }
+
+    .hero::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background:
+        radial-gradient(ellipse 60% 50% at 75% 50%, rgba(200,168,75,0.08) 0%, transparent 70%),
+        radial-gradient(ellipse 40% 60% at 20% 80%, rgba(200,168,75,0.05) 0%, transparent 60%);
+    }
+
+    .hero-grid-lines {
+      position: absolute;
+      inset: 0;
+      background-image:
+        linear-gradient(rgba(200,168,75,0.04) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(200,168,75,0.04) 1px, transparent 1px);
+      background-size: 80px 80px;
+    }
+
+    .hero-content {
+      position: relative;
+      text-align: center;
+      padding: 0 2rem;
+      max-width: 800px;
+      animation: fadeUp 1s ease both;
+    }
+
+    .hero-eyebrow {
+      font-size: 0.72rem;
+      letter-spacing: 0.25em;
+      text-transform: uppercase;
+      color: var(--gold);
+      margin-bottom: 1.5rem;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 1rem;
+    }
+    .hero-eyebrow::before, .hero-eyebrow::after {
+      content: '';
+      width: 40px;
+      height: 1px;
+      background: var(--gold);
+      opacity: 0.5;
+    }
+
+    .hero h1 {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: clamp(3rem, 7vw, 5.5rem);
+      font-weight: 300;
+      color: #fff;
+      line-height: 1.1;
+      margin-bottom: 1.5rem;
+    }
+    .hero h1 em {
+      font-style: italic;
+      color: var(--gold-light);
+    }
+
+    .hero-sub {
+      font-size: 1rem;
+      font-weight: 300;
+      color: rgba(255,255,255,0.65);
+      line-height: 1.7;
+      max-width: 520px;
+      margin: 0 auto 2.5rem;
+      letter-spacing: 0.02em;
+    }
+
+    .hero-btns {
+      display: flex;
+      gap: 1rem;
+      justify-content: center;
+      flex-wrap: wrap;
+    }
+
+    .btn-primary {
+      background: var(--gold);
+      color: var(--forest-deep);
+      padding: 0.85rem 2.2rem;
+      border: none;
+      border-radius: 2px;
+      font-family: 'Jost', sans-serif;
+      font-size: 0.78rem;
+      font-weight: 600;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      cursor: pointer;
+      text-decoration: none;
+      transition: background 0.2s, transform 0.15s;
+      display: inline-block;
+    }
+    .btn-primary:hover { background: var(--gold-light); transform: translateY(-1px); }
+
+    .btn-outline {
+      background: transparent;
+      color: #fff;
+      padding: 0.85rem 2.2rem;
+      border: 1px solid rgba(255,255,255,0.35);
+      border-radius: 2px;
+      font-family: 'Jost', sans-serif;
+      font-size: 0.78rem;
+      font-weight: 500;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      cursor: pointer;
+      text-decoration: none;
+      transition: border-color 0.2s, color 0.2s;
+      display: inline-block;
+    }
+    .btn-outline:hover { border-color: var(--gold); color: var(--gold); }
+
+    .hero-scroll {
+      position: absolute;
+      bottom: 2.5rem;
+      left: 50%;
+      transform: translateX(-50%);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 0.5rem;
+      color: rgba(255,255,255,0.4);
+      font-size: 0.65rem;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      animation: bounce 2s infinite;
+    }
+    .hero-scroll-line {
+      width: 1px;
+      height: 40px;
+      background: linear-gradient(to bottom, rgba(200,168,75,0.6), transparent);
+    }
+
+    /* ── SERVICES ── */
+    .services {
+      background: var(--cream);
+      padding: 6rem 4rem;
+    }
+
+    .section-label {
+      font-size: 0.7rem;
+      letter-spacing: 0.25em;
+      text-transform: uppercase;
+      color: var(--gold);
+      margin-bottom: 0.75rem;
+    }
+
+    .section-title {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: clamp(2rem, 4vw, 3rem);
+      font-weight: 400;
+      color: var(--forest-deep);
+      line-height: 1.2;
+      margin-bottom: 3.5rem;
+    }
+
+    .services-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 2px;
+      max-width: 1100px;
+      margin: 0 auto;
+    }
+
+    .service-card {
+      background: #fff;
+      padding: 3rem 2.5rem;
+      position: relative;
+      overflow: hidden;
+      transition: transform 0.3s;
+    }
+    .service-card:hover { transform: translateY(-4px); }
+    .service-card::after {
+      content: '';
+      position: absolute;
+      bottom: 0; left: 0; right: 0;
+      height: 3px;
+      background: var(--gold);
+      transform: scaleX(0);
+      transform-origin: left;
+      transition: transform 0.3s;
+    }
+    .service-card:hover::after { transform: scaleX(1); }
+
+    .service-icon {
+      width: 48px;
+      height: 48px;
+      margin-bottom: 1.5rem;
+      color: var(--gold);
+    }
+
+    .service-card h3 {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 1.6rem;
+      font-weight: 400;
+      color: var(--forest-deep);
+      margin-bottom: 0.75rem;
+    }
+
+    .service-card p {
+      font-size: 0.88rem;
+      line-height: 1.75;
+      color: var(--text-muted);
+      font-weight: 300;
+    }
+
+    .service-card a {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.4rem;
+      margin-top: 1.5rem;
+      font-size: 0.75rem;
+      font-weight: 600;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--forest);
+      text-decoration: none;
+      transition: gap 0.2s, color 0.2s;
+    }
+    .service-card a:hover { gap: 0.8rem; color: var(--gold); }
+
+    /* ── STR ── */
+    #str { padding: 6rem 4rem; background: var(--warm-white); }
+
+    .str-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 2rem;
+      max-width: 1200px;
+      margin: 0 auto;
+    }
+
+    .str-card {
+      background: #fff;
+      border: 1px solid var(--border);
+      border-radius: 4px;
+      overflow: hidden;
+      transition: box-shadow 0.3s, transform 0.3s;
+    }
+    .str-card:hover {
+      box-shadow: 0 16px 48px rgba(44,74,46,0.12);
+      transform: translateY(-4px);
+    }
+
+    .str-photo {
+      height: 220px;
+      background: linear-gradient(135deg, var(--forest) 0%, var(--forest-light) 100%);
+      position: relative;
+      overflow: hidden;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .str-photo img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
+    }
+
+    .str-photo-placeholder {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 0.5rem;
+      color: rgba(255,255,255,0.4);
+      font-size: 0.7rem;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+    }
+
+    .photo-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      grid-template-rows: 1fr 1fr;
+      height: 220px;
+      gap: 2px;
+    }
+    .photo-grid .main-photo { grid-row: span 2; }
+    .photo-cell {
+      background: linear-gradient(135deg, var(--forest) 0%, var(--forest-light) 100%);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: rgba(255,255,255,0.25);
+      font-size: 0.6rem;
+      letter-spacing: 0.1em;
+    }
+    .photo-cell.alt { background: linear-gradient(135deg, #3a5e3c 0%, #2C4A2E 100%); }
+    .photo-cell.alt2 { background: linear-gradient(135deg, #243d26 0%, #3a5e3c 100%); }
+
+    .str-badge {
+      position: absolute;
+      top: 1rem; right: 1rem;
+      background: var(--gold);
+      color: var(--forest-deep);
+      font-size: 0.65rem;
+      font-weight: 600;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      padding: 0.3rem 0.7rem;
+      border-radius: 2px;
+    }
+
+    .str-body { padding: 1.5rem; }
+    .str-location {
+      font-size: 0.7rem;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--gold);
+      margin-bottom: 0.4rem;
+    }
+    .str-card h3 {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 1.4rem;
+      font-weight: 400;
+      color: var(--forest-deep);
+      margin-bottom: 0.6rem;
+    }
+    .str-card p {
+      font-size: 0.83rem;
+      color: var(--text-muted);
+      line-height: 1.65;
+      font-weight: 300;
+      margin-bottom: 1.2rem;
+    }
+    .str-features {
+      display: flex;
+      gap: 1rem;
+      margin-bottom: 1.2rem;
+      flex-wrap: wrap;
+    }
+    .str-feat {
+      font-size: 0.72rem;
+      color: var(--text-muted);
+      display: flex;
+      align-items: center;
+      gap: 0.3rem;
+    }
+    .str-feat svg { color: var(--gold); }
+
+    .airbnb-btn {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 0.5rem;
+      width: 100%;
+      padding: 0.75rem;
+      background: var(--forest-deep);
+      color: #fff;
+      border: none;
+      border-radius: 2px;
+      font-family: 'Jost', sans-serif;
+      font-size: 0.75rem;
+      font-weight: 500;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      text-decoration: none;
+      transition: background 0.2s;
+      cursor: pointer;
+    }
+    .airbnb-btn:hover { background: var(--gold); color: var(--forest-deep); }
+    .airbnb-logo { width: 18px; height: 18px; }
+    .direct-btn {
+      display: flex; align-items: center; justify-content: center; gap: 0.5rem;
+      width: 100%; padding: 0.75rem; margin-top: 0.6rem;
+      background: var(--gold); color: var(--forest-deep);
+      border: 1px solid var(--gold); border-radius: 2px;
+      font-family: 'Jost', sans-serif; font-size: 0.75rem; font-weight: 600;
+      letter-spacing: 0.1em; text-transform: uppercase; text-decoration: none;
+      transition: background 0.2s, color 0.2s;
+    }
+    .direct-btn:hover { background: var(--gold-light); border-color: var(--gold-light); }
+    .direct-btn svg { width: 16px; height: 16px; }
+
+    /* ── LTR ── */
+    #ltr { padding: 6rem 4rem; background: var(--cream); }
+
+    .ltr-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+      gap: 1.5rem;
+      max-width: 1200px;
+      margin: 0 auto;
+    }
+
+    .ltr-card {
+      background: #fff;
+      border: 1px solid var(--border);
+      overflow: hidden;
+      transition: box-shadow 0.3s;
+    }
+    .ltr-card:hover { box-shadow: 0 8px 32px rgba(44,74,46,0.1); }
+
+    .ltr-photo {
+      height: 200px;
+      background: linear-gradient(135deg, var(--forest) 0%, var(--forest-light) 100%);
+      position: relative;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+    .ltr-photo-inner {
+      display: grid;
+      grid-template-columns: 1.4fr 1fr;
+      gap: 2px;
+      width: 100%;
+      height: 100%;
+    }
+    .ltr-photo-cell {
+      background: linear-gradient(135deg, var(--forest) 0%, #3d6640 100%);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: rgba(255,255,255,0.2);
+      font-size: 0.55rem;
+      letter-spacing: 0.08em;
+    }
+    .ltr-photo-cell:nth-child(2) { background: linear-gradient(135deg, #3a5e3c 0%, var(--forest-deep) 100%); }
+
+    .ltr-overlay-tag {
+      position: absolute;
+      top: 1rem; left: 1rem;
+      background: rgba(26,46,27,0.85);
+      backdrop-filter: blur(4px);
+      color: var(--gold);
+      font-size: 0.62rem;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      padding: 0.25rem 0.6rem;
+      border: 1px solid rgba(200,168,75,0.3);
+    }
+
+    .ltr-body { padding: 1.2rem 1.5rem 1.5rem; }
+    .ltr-city {
+      font-size: 0.68rem;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      color: var(--gold);
+      margin-bottom: 0.3rem;
+    }
+    .ltr-card h3 {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 1.3rem;
+      font-weight: 400;
+      color: var(--forest-deep);
+    }
+    .ltr-privacy {
+      margin-top: 0.8rem;
+      font-size: 0.72rem;
+      color: var(--text-muted);
+      display: flex;
+      align-items: center;
+      gap: 0.35rem;
+    }
+    .ltr-privacy svg { color: var(--forest); }
+
+    /* ── WE BUY HOMES ── */
+    #we-buy-homes { padding: 6rem 4rem; background: var(--warm-white); }
+
+    .reno-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 3rem;
+      max-width: 1100px;
+      margin: 0 auto;
+    }
+
+    .reno-card {
+      border: 1px solid var(--border);
+      overflow: hidden;
+      background: #fff;
+    }
+
+    .before-after {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 2px;
+      height: 240px;
+    }
+
+    .ba-panel {
+      position: relative;
+      overflow: hidden;
+    }
+
+    .ba-photo {
+      width: 100%;
+      height: 100%;
+      background: linear-gradient(135deg, #4a4a4a 0%, #2a2a2a 100%);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: rgba(255,255,255,0.2);
+      font-size: 0.6rem;
+      letter-spacing: 0.08em;
+    }
+
+    .ba-photo.after-photo {
+      background: linear-gradient(135deg, var(--forest-light) 0%, var(--forest-deep) 100%);
+    }
+
+    .ba-label {
+      position: absolute;
+      top: 0.75rem; left: 0.75rem;
+      font-size: 0.6rem;
+      font-weight: 600;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      padding: 0.2rem 0.5rem;
+    }
+    .before-label { background: rgba(0,0,0,0.6); color: rgba(255,255,255,0.8); }
+    .after-label { background: var(--gold); color: var(--forest-deep); }
+
+    .reno-body { padding: 1.5rem; }
+    .reno-location {
+      font-size: 0.68rem;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      color: var(--gold);
+      margin-bottom: 0.3rem;
+    }
+    .reno-card h3 {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 1.4rem;
+      font-weight: 400;
+      color: var(--forest-deep);
+      margin-bottom: 0.5rem;
+    }
+    .reno-tags { display: flex; gap: 0.5rem; flex-wrap: wrap; }
+    .reno-tag {
+      font-size: 0.65rem;
+      letter-spacing: 0.08em;
+      padding: 0.2rem 0.6rem;
+      border: 1px solid var(--border);
+      color: var(--text-muted);
+      border-radius: 2px;
+    }
+
+    /* ── STATS STRIP ── */
+    .stats-strip {
+      background: var(--forest-deep);
+      padding: 3rem 4rem;
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 2rem;
+      text-align: center;
+      border-top: 2px solid var(--gold);
+      border-bottom: 2px solid var(--gold);
+    }
+
+    .stat-item {}
+    .stat-num {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 3rem;
+      font-weight: 300;
+      color: var(--gold);
+      line-height: 1;
+      margin-bottom: 0.5rem;
+    }
+    .stat-label {
+      font-size: 0.72rem;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      color: rgba(255,255,255,0.55);
+      font-weight: 300;
+    }
+
+    /* ── CONTACT ── */
+    #contact {
+      padding: 6rem 4rem;
+      background: var(--cream);
+    }
+
+    .contact-inner {
+      max-width: 900px;
+      margin: 0 auto;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 5rem;
+      align-items: start;
+    }
+
+    .contact-left h2 {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: clamp(2rem, 4vw, 2.8rem);
+      font-weight: 400;
+      color: var(--forest-deep);
+      line-height: 1.2;
+      margin-bottom: 1rem;
+    }
+    .contact-left p {
+      font-size: 0.88rem;
+      line-height: 1.75;
+      color: var(--text-muted);
+      font-weight: 300;
+      margin-bottom: 2rem;
+    }
+
+    .contact-detail {
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+      margin-bottom: 1.2rem;
+    }
+    .contact-icon {
+      width: 40px;
+      height: 40px;
+      background: var(--forest-deep);
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+    }
+    .contact-icon svg { color: var(--gold); }
+    .contact-text { font-size: 0.9rem; color: var(--charcoal); }
+    .contact-text a { color: var(--forest); text-decoration: none; transition: color 0.2s; }
+    .contact-text a:hover { color: var(--gold); }
+    .contact-text-label { font-size: 0.65rem; letter-spacing: 0.12em; text-transform: uppercase; color: var(--text-muted); margin-bottom: 0.1rem; }
+
+    .contact-form {
+      background: #fff;
+      padding: 2.5rem;
+      border: 1px solid var(--border);
+    }
+    .contact-form h3 {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 1.5rem;
+      font-weight: 400;
+      color: var(--forest-deep);
+      margin-bottom: 1.5rem;
+    }
+
+    .form-group { margin-bottom: 1.2rem; }
+    .form-group label {
+      display: block;
+      font-size: 0.68rem;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--text-muted);
+      margin-bottom: 0.4rem;
+    }
+    .form-group input,
+    .form-group select,
+    .form-group textarea {
+      width: 100%;
+      padding: 0.75rem 1rem;
+      border: 1px solid #e0ddd4;
+      background: var(--warm-white);
+      font-family: 'Jost', sans-serif;
+      font-size: 0.88rem;
+      color: var(--charcoal);
+      outline: none;
+      transition: border-color 0.2s;
+      border-radius: 2px;
+    }
+    .form-group input:focus,
+    .form-group select:focus,
+    .form-group textarea:focus { border-color: var(--gold); }
+    .form-group textarea { height: 100px; resize: vertical; }
+
+    .submit-btn {
+      width: 100%;
+      padding: 0.9rem;
+      background: var(--forest-deep);
+      color: #fff;
+      border: none;
+      font-family: 'Jost', sans-serif;
+      font-size: 0.78rem;
+      font-weight: 600;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      cursor: pointer;
+      transition: background 0.2s;
+      border-radius: 2px;
+    }
+    .submit-btn:hover { background: var(--gold); color: var(--forest-deep); }
+
+    /* ── FOOTER ── */
+    footer {
+      background: var(--forest-deep);
+      padding: 3rem 4rem;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      gap: 1.5rem;
+      border-top: 1px solid rgba(200,168,75,0.15);
+    }
+
+    .footer-logo {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 1.4rem;
+      color: var(--gold);
+      letter-spacing: 0.04em;
+    }
+    .footer-logo span { color: rgba(255,255,255,0.5); font-weight: 300; }
+
+    .footer-links { display: flex; gap: 2rem; }
+    nav.footer-links { position: static; padding: 0; background: none; border: 0; backdrop-filter: none; z-index: auto; flex-wrap: wrap; justify-content: flex-start; row-gap: 0.8rem; }
+    .footer-links a {
+      font-size: 0.72rem;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: rgba(255,255,255,0.4);
+      text-decoration: none;
+      transition: color 0.2s;
+    }
+    .footer-links a:hover { color: var(--gold); }
+
+    .footer-copy {
+      font-size: 0.72rem;
+      color: rgba(255,255,255,0.3);
+      letter-spacing: 0.05em;
+    }
+
+    /* ── DECORATIVE DIVIDER ── */
+    .divider {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 1.5rem;
+      margin-bottom: 1rem;
+    }
+    .divider-line { flex: 1; max-width: 80px; height: 1px; background: var(--gold); opacity: 0.35; }
+    .divider-diamond {
+      width: 8px; height: 8px;
+      background: var(--gold);
+      transform: rotate(45deg);
+      opacity: 0.6;
+    }
+
+    /* ── ANIMATIONS ── */
+    @keyframes fadeUp {
+      from { opacity: 0; transform: translateY(30px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+    @keyframes bounce {
+      0%, 100% { transform: translateX(-50%) translateY(0); }
+      50% { transform: translateX(-50%) translateY(6px); }
+    }
+
+    .fade-in {
+      opacity: 0;
+      transform: translateY(20px);
+      transition: opacity 0.7s ease, transform 0.7s ease;
+    }
+    .fade-in.visible { opacity: 1; transform: translateY(0); }
+
+    /* ── MOBILE ── */
+    @media (max-width: 900px) {
+      nav { padding: 1rem 1.5rem; }
+      .nav-links { display: none; }
+      .services-grid, .str-grid { grid-template-columns: 1fr; }
+      .stats-strip { grid-template-columns: repeat(2, 1fr); }
+      .contact-inner { grid-template-columns: 1fr; gap: 2.5rem; }
+      .reno-grid { grid-template-columns: 1fr; }
+      #str, #ltr, #we-buy-homes, #contact, .services { padding: 4rem 1.5rem; }
+      footer { padding: 2rem 1.5rem; flex-direction: column; align-items: flex-start; }
+    }
+
+    @media (max-width: 600px) {
+      .ltr-grid { grid-template-columns: 1fr; }
+      .stats-strip { grid-template-columns: 1fr 1fr; padding: 2rem 1.5rem; }
+    }
+  </style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <a class="nav-logo" href="#">Cophia</a>
+  <ul class="nav-links">
+    <li><a href="#str">Short-Term Rentals</a></li>
+    <li><a href="#ltr">Long-Term Rentals</a></li>
+    <li><a href="#we-buy-homes">We Buy Homes</a></li>
+    <li><a href="/book/">Book Direct</a></li>
+    <li><a href="#contact" class="nav-cta">Contact Us</a></li>
+  </ul>
+</nav>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="hero-grid-lines"></div>
+  <div class="hero-content">
+    <div style="margin-bottom:1.5rem;"><img src="Cophia_Color_Gold (1).png" alt="Cophia Properties" style="height:120px;"></div>
+    <div class="hero-eyebrow">St. Louis, Missouri</div>
+    <h1>Real Estate<br><em>Done Right</em></h1>
+    <p class="hero-sub">Short-term rentals, long-term rentals, and home buying — thoughtfully managed properties across the St. Louis metro area.</p>
+    <div class="hero-btns">
+      <a href="#str" class="btn-primary">View Our Rentals</a>
+      <a href="#contact" class="btn-outline">Get In Touch</a>
+    </div>
+  </div>
+  <div class="hero-scroll">
+    <div class="hero-scroll-line"></div>
+    Scroll
+  </div>
+</section>
+
+<!-- SERVICES -->
+<section class="services">
+  <div style="max-width:1100px; margin:0 auto;">
+    <div class="section-label">What We Do</div>
+    <h2 class="section-title">Full-Service Property Management<br>& Home Buying</h2>
+    <div class="services-grid fade-in">
+
+      <div class="service-card">
+        <svg class="service-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+          <path d="M3 9l9-7 9 7v11a2 2 0 01-2 2H5a2 2 0 01-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/>
+        </svg>
+        <h3>Short-Term Rentals</h3>
+        <p>Beautifully furnished, guest-ready properties available on Airbnb. Ideal for travelers seeking the comfort of home with the style of a boutique stay.</p>
+        <a href="#str">Explore listings →</a>
+      </div>
+
+      <div class="service-card">
+        <svg class="service-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+          <rect x="1" y="3" width="15" height="13"/><polygon points="16 8 20 8 23 11 23 16 16 16 16 8"/>
+          <circle cx="5.5" cy="18.5" r="2.5"/><circle cx="18.5" cy="18.5" r="2.5"/>
+        </svg>
+        <h3>Long-Term Rentals</h3>
+        <p>Well-maintained residential properties across sought-after St. Louis neighborhoods — providing stable, quality housing for our tenants.</p>
+        <a href="#ltr">View properties →</a>
+      </div>
+
+      <div class="service-card">
+        <svg class="service-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+          <path d="M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-4 0a1 1 0 01-1-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 01-1 1h-2z"/>
+        </svg>
+        <h3>We Buy Homes</h3>
+        <p>Looking to sell your home quickly and hassle-free? We buy homes in any condition across the St. Louis metro area — fair offers, fast closings.</p>
+        <a href="#we-buy-homes">Learn more →</a>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- STATS STRIP -->
+<div class="stats-strip fade-in">
+  <div class="stat-item">
+    <div class="stat-num">3</div>
+    <div class="stat-label">Active STR Listings</div>
+  </div>
+  <div class="stat-item">
+    <div class="stat-num">5</div>
+    <div class="stat-label">Long-Term Rentals</div>
+  </div>
+  <div class="stat-item">
+    <div class="stat-num">10+</div>
+    <div class="stat-label">Homes Purchased</div>
+  </div>
+  <div class="stat-item">
+    <div class="stat-num">STL</div>
+    <div class="stat-label">Metro Area Focused</div>
+  </div>
+</div>
+
+<!-- STR SECTION -->
+<section id="str">
+  <div style="max-width:1200px; margin:0 auto;">
+    <div class="section-label fade-in">Airbnb Properties</div>
+    <h2 class="section-title fade-in">Short-Term Rentals</h2>
+    <p style="font-size:0.9rem;color:var(--text-muted);font-weight:300;max-width:560px;line-height:1.75;margin-bottom:3rem;" class="fade-in">
+      Each of our short-term rentals is thoughtfully designed, fully stocked, and ready to welcome guests. Book on Airbnb, or book directly with us for Peach Tree and Mapleview — just send your dates and we'll confirm personally.
+    </p>
+
+    <div class="str-grid">
+
+      <!-- STR 1: The Cophia Retreat (7739 Peach Tree Ln) -->
+      <div class="str-card fade-in">
+        <div class="photo-grid">
+          <div class="photo-cell main-photo" style="background:url('https://photos.zillowstatic.com/fp/bcc5044fd308287e384ca0a4500d398d-cc_ft_1536.jpg') center/cover;"></div>
+          <div class="photo-cell" style="background:url('https://photos.zillowstatic.com/fp/7db8eb83808c0b050c33ec266078c56c-cc_ft_1536.jpg') center/cover;"></div>
+          <div class="photo-cell" style="background:url('https://photos.zillowstatic.com/fp/df1c8dc8b9c96078ce7a66dd1af07f98-cc_ft_1536.jpg') center/cover;"></div>
+        </div>
+        <div class="str-body">
+          <div class="str-location">St. Louis, MO</div>
+          <h3>MCM Home in U-City</h3>
+          <p>A charming, fully-furnished escape in the St. Louis area — perfect for weekend getaways, business travel, or extended stays.</p>
+          <div class="str-features">
+            <span class="str-feat">
+              <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 9l9-7 9 7v11a2 2 0 01-2 2H5a2 2 0 01-2-2z"/></svg>
+              Entire Home
+            </span>
+            <span class="str-feat">
+              <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20.84 4.61a5.5 5.5 0 00-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 00-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 000-7.78z"/></svg>
+              Guest Favorite
+            </span>
+          </div>
+          <a href="https://www.airbnb.com/rooms/1551591718173477288" target="_blank" rel="noopener" class="airbnb-btn">
+            <svg class="airbnb-logo" viewBox="0 0 24 24" fill="currentColor"><path d="M12 0C5.374 0 0 5.373 0 12c0 6.628 5.374 12 12 12 6.628 0 12-5.372 12-12 0-6.627-5.372-12-12-12zm.022 4.6c1.26 0 2.28 1.02 2.28 2.28 0 1.26-1.02 2.28-2.28 2.28-1.26 0-2.28-1.02-2.28-2.28 0-1.26 1.02-2.28 2.28-2.28zM18.6 17.64c-.22.86-2.04 3.74-5.56 3.4-1.28-.12-2.46-.72-3.06-1.78-.04-.06-.08-.14-.1-.22-.02-.06-.04-.1-.04-.16-.02-.06-.02-.12-.02-.18 0-.08.02-.14.02-.22.02-.06.04-.12.06-.18.12-.46.46-.96.94-1.44.9-.9 2.12-1.68 3.04-2.46.44-.38.82-.78 1.02-1.2.04-.1.08-.2.1-.3.02-.1.04-.2.04-.32 0-.1-.02-.2-.04-.3-.02-.1-.06-.2-.1-.3-.2-.42-.58-.82-1.02-1.2-.92-.78-2.14-1.56-3.04-2.46-.48-.48-.82-.98-.94-1.44-.02-.06-.04-.12-.06-.18 0-.08-.02-.14-.02-.22 0-.06 0-.12.02-.18 0-.06.02-.1.04-.16.02-.08.06-.16.1-.22.6-1.06 1.78-1.66 3.06-1.78 3.52-.34 5.34 2.54 5.56 3.4.22.86.22 1.72 0 2.58z"/></svg>
+            View on Airbnb
+          </a>
+          <a href="/book/?home=peachtree&amp;src=site" class="direct-btn">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="4" width="18" height="18" rx="2"/><path d="M16 2v4M8 2v4M3 10h18"/></svg>
+            Book Direct
+          </a>
+        </div>
+      </div>
+
+      <!-- STR 2: Designer Ranch Near Clayton -->
+      <div class="str-card fade-in">
+        <div class="photo-grid">
+          <div class="photo-cell main-photo" style="background:url('https://a0.muscache.com/im/pictures/hosting/Hosting-1510833497765585053/original/393a9549-ecf4-4108-913e-db18bf13af79.jpeg?im_w=1200') center/cover;"></div>
+          <div class="photo-cell" style="background:url('https://a0.muscache.com/im/pictures/hosting/Hosting-1510833497765585053/original/7c426681-7db2-41e4-a293-10dfbc5cdba3.jpeg?im_w=720') center/cover;"></div>
+          <div class="photo-cell" style="background:url('https://a0.muscache.com/im/pictures/hosting/Hosting-1510833497765585053/original/c317dc7c-d87c-41cd-bd1b-4846696da353.jpeg?im_w=720') center/cover;"></div>
+        </div>
+        <div class="str-body">
+          <div class="str-location">University City, MO</div>
+          <h3>Designer Ranch Near Clayton</h3>
+          <p>Located in vibrant University City, this welcoming home puts guests close to dining, culture, and the best of the Loop neighborhood.</p>
+          <div class="str-features">
+            <span class="str-feat">
+              <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 9l9-7 9 7v11a2 2 0 01-2 2H5a2 2 0 01-2-2z"/></svg>
+              Entire Home
+            </span>
+            <span class="str-feat">
+              <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><path d="M12 8v4l3 3"/></svg>
+              Self Check-In
+            </span>
+          </div>
+          <a href="https://www.airbnb.com/rooms/1510833497765585053" target="_blank" rel="noopener" class="airbnb-btn">
+            <svg class="airbnb-logo" viewBox="0 0 24 24" fill="currentColor"><path d="M12 0C5.374 0 0 5.373 0 12c0 6.628 5.374 12 12 12 6.628 0 12-5.372 12-12 0-6.627-5.372-12-12-12zm.022 4.6c1.26 0 2.28 1.02 2.28 2.28 0 1.26-1.02 2.28-2.28 2.28-1.26 0-2.28-1.02-2.28-2.28 0-1.26 1.02-2.28 2.28-2.28zM18.6 17.64c-.22.86-2.04 3.74-5.56 3.4-1.28-.12-2.46-.72-3.06-1.78-.04-.06-.08-.14-.1-.22-.02-.06-.04-.1-.04-.16-.02-.06-.02-.12-.02-.18 0-.08.02-.14.02-.22.02-.06.04-.12.06-.18.12-.46.46-.96.94-1.44.9-.9 2.12-1.68 3.04-2.46.44-.38.82-.78 1.02-1.2.04-.1.08-.2.1-.3.02-.1.04-.2.04-.32 0-.1-.02-.2-.04-.3-.02-.1-.06-.2-.1-.3-.2-.42-.58-.82-1.02-1.2-.92-.78-2.14-1.56-3.04-2.46-.48-.48-.82-.98-.94-1.44-.02-.06-.04-.12-.06-.18 0-.08-.02-.14-.02-.22 0-.06 0-.12.02-.18 0-.06.02-.1.04-.16.02-.08.06-.16.1-.22.6-1.06 1.78-1.66 3.06-1.78 3.52-.34 5.34 2.54 5.56 3.4.22.86.22 1.72 0 2.58z"/></svg>
+            View on Airbnb
+          </a>
+          <a href="/book/?home=mapleview&amp;src=site" class="direct-btn">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="4" width="18" height="18" rx="2"/><path d="M16 2v4M8 2v4M3 10h18"/></svg>
+            Book Direct
+          </a>
+        </div>
+      </div>
+
+      <!-- STR 3 -->
+      <div class="str-card fade-in">
+        <div class="photo-grid">
+          <div class="photo-cell main-photo" style="background:url('https://a0.muscache.com/im/pictures/prohost-api/Hosting-1558934020261673710/original/c19d1ba0-637c-49a0-b578-7bfbf85e2df2.jpeg?im_w=1200') center/cover;"></div>
+          <div class="photo-cell" style="background:url('https://a0.muscache.com/im/pictures/prohost-api/Hosting-1558934020261673710/original/35a86e45-c5cb-46d1-8e78-e1e2051c4815.jpeg?im_w=720') center/cover;"></div>
+          <div class="photo-cell" style="background:url('https://a0.muscache.com/im/pictures/prohost-api/Hosting-1558934020261673710/original/57ea5c52-fb0c-4ae9-b69f-dc2e62809ab3.jpeg?im_w=720') center/cover;"></div>
+        </div>
+        <div class="str-body">
+          <div class="str-location">Innsbrook, MO</div>
+          <h3>Innsbrook Turtle Cove Escape</h3>
+          <p>A lakeside escape at Innsbrook Resort — your perfect group retreat with space for up to 16 guests surrounded by nature and tranquility.</p>
+          <div class="str-features">
+            <span class="str-feat">
+              <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M17 21v-2a4 4 0 00-4-4H5a4 4 0 00-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 00-3-3.87"/><path d="M16 3.13a4 4 0 010 7.75"/></svg>
+              Up to 16 Guests
+            </span>
+            <span class="str-feat">
+              <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+              Resort Access
+            </span>
+          </div>
+          <a href="https://www.airbnb.com/rooms/1558934020261673710" target="_blank" rel="noopener" class="airbnb-btn">
+            <svg class="airbnb-logo" viewBox="0 0 24 24" fill="currentColor"><path d="M12 0C5.374 0 0 5.373 0 12c0 6.628 5.374 12 12 12 6.628 0 12-5.372 12-12 0-6.627-5.372-12-12-12zm.022 4.6c1.26 0 2.28 1.02 2.28 2.28 0 1.26-1.02 2.28-2.28 2.28-1.26 0-2.28-1.02-2.28-2.28 0-1.26 1.02-2.28 2.28-2.28zM18.6 17.64c-.22.86-2.04 3.74-5.56 3.4-1.28-.12-2.46-.72-3.06-1.78-.04-.06-.08-.14-.1-.22-.02-.06-.04-.1-.04-.16-.02-.06-.02-.12-.02-.18 0-.08.02-.14.02-.22.02-.06.04-.12.06-.18.12-.46.46-.96.94-1.44.9-.9 2.12-1.68 3.04-2.46.44-.38.82-.78 1.02-1.2.04-.1.08-.2.1-.3.02-.1.04-.2.04-.32 0-.1-.02-.2-.04-.3-.02-.1-.06-.2-.1-.3-.2-.42-.58-.82-1.02-1.2-.92-.78-2.14-1.56-3.04-2.46-.48-.48-.82-.98-.94-1.44-.02-.06-.04-.12-.06-.18 0-.08-.02-.14-.02-.22 0-.06 0-.12.02-.18 0-.06.02-.1.04-.16.02-.08.06-.16.1-.22.6-1.06 1.78-1.66 3.06-1.78 3.52-.34 5.34 2.54 5.56 3.4.22.86.22 1.72 0 2.58z"/></svg>
+            View on Airbnb
+          </a>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- LTR SECTION -->
+<section id="ltr">
+  <div style="max-width:1200px; margin:0 auto;">
+    <div class="section-label fade-in">Residential Rentals</div>
+    <h2 class="section-title fade-in">Long-Term Rentals</h2>
+    <p style="font-size:0.9rem;color:var(--text-muted);font-weight:300;max-width:560px;line-height:1.75;margin-bottom:3rem;" class="fade-in">
+      Quality homes in established St. Louis neighborhoods. We take pride in well-maintained properties and responsive management for our long-term residents.
+    </p>
+
+    <div class="ltr-grid">
+
+      <!-- LTR 1: Maplewood (2255 Yale Ave) -->
+      <div class="ltr-card fade-in">
+        <div class="ltr-photo">
+          <div class="ltr-photo-inner">
+            <div class="ltr-photo-cell" style="background:url('https://photos.zillowstatic.com/fp/38e9b35102579870c69f99fd6c561a1b-cc_ft_1536.jpg') center/cover;"></div>
+            <div class="ltr-photo-cell" style="background:url('https://photos.zillowstatic.com/fp/1e237d52d8b59911cfb3c746a1b3ace8-cc_ft_1536.jpg') center/cover;"></div>
+          </div>
+          <div class="ltr-overlay-tag">Occupied</div>
+        </div>
+        <div class="ltr-body">
+          <div class="ltr-city">Maplewood, MO</div>
+          <h3>Maplewood Residence</h3>
+          <div class="ltr-privacy">
+            <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="11" width="18" height="11" rx="2" ry="2"/><path d="M7 11V7a5 5 0 0110 0v4"/></svg>
+            Tenant privacy protected — exact address available upon inquiry
+          </div>
+        </div>
+      </div>
+
+      <!-- LTR 2: U-City (7739 Peach Tree Ln) -->
+      <div class="ltr-card fade-in">
+        <div class="ltr-photo">
+          <div class="ltr-photo-inner">
+            <div class="ltr-photo-cell" style="background:url('https://a0.muscache.com/im/pictures/hosting/Hosting-1551591718173477288/original/56200886-da8b-4db2-8afb-745e6c99d91a.jpeg?im_w=1200') center/cover;"></div>
+            <div class="ltr-photo-cell" style="background:url('https://a0.muscache.com/im/pictures/hosting/Hosting-1551591718173477288/original/4041fd02-3ccd-447c-813c-76360effa82c.jpeg?im_w=720') center/cover;"></div>
+          </div>
+          <div class="ltr-overlay-tag">Occupied</div>
+        </div>
+        <div class="ltr-body">
+          <div class="ltr-city">University City, MO</div>
+          <h3>University City Home</h3>
+          <div class="ltr-privacy">
+            <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="11" width="18" height="11" rx="2" ry="2"/><path d="M7 11V7a5 5 0 0110 0v4"/></svg>
+            Tenant privacy protected — exact address available upon inquiry
+          </div>
+        </div>
+      </div>
+
+      <!-- LTR 2b: University City Home II (530 Westview) -->
+      <div class="ltr-card fade-in">
+        <div class="ltr-photo">
+          <div class="ltr-photo-inner">
+            <div class="ltr-photo-cell" style="background:url('530 Westview Exterior.JPEG') center/cover;"></div>
+            <div class="ltr-photo-cell" style="background:url('530 Westview Interior.jpg') center/cover;"></div>
+          </div>
+          <div class="ltr-overlay-tag">Occupied</div>
+        </div>
+        <div class="ltr-body">
+          <div class="ltr-city">University City, MO</div>
+          <h3>University City Home II</h3>
+          <div class="ltr-privacy">
+            <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="11" width="18" height="11" rx="2" ry="2"/><path d="M7 11V7a5 5 0 0110 0v4"/></svg>
+            Tenant privacy protected — exact address available upon inquiry
+          </div>
+        </div>
+      </div>
+
+      <!-- LTR 3: Lafayette Square (1432 Dolman St) -->
+      <div class="ltr-card fade-in">
+        <div class="ltr-photo">
+          <div class="ltr-photo-inner">
+            <div class="ltr-photo-cell" style="background:url('https://photos.zillowstatic.com/fp/645a6e2fcecd8efe727b3f78253381b5-cc_ft_1536.jpg') center/cover;"></div>
+            <div class="ltr-photo-cell" style="background:url('https://photos.zillowstatic.com/fp/e495d2c265f83314b4458aeae40c86a6-cc_ft_1536.jpg') center/cover;"></div>
+          </div>
+          <div class="ltr-overlay-tag">Occupied</div>
+        </div>
+        <div class="ltr-body">
+          <div class="ltr-city">Lafayette Square, St. Louis</div>
+          <h3>Lafayette Square Property</h3>
+          <div class="ltr-privacy">
+            <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="11" width="18" height="11" rx="2" ry="2"/><path d="M7 11V7a5 5 0 0110 0v4"/></svg>
+            Tenant privacy protected — exact address available upon inquiry
+          </div>
+        </div>
+      </div>
+
+      <!-- LTR 4: Gate District #1 -->
+      <div class="ltr-card fade-in">
+        <div class="ltr-photo">
+          <div class="ltr-photo-inner">
+            <div class="ltr-photo-cell" style="background:url('2714 St Vincent003 copy.jpg') center/cover;"></div>
+            <div class="ltr-photo-cell" style="background:url('2714 St Vincent008 copy.jpg') center/cover;"></div>
+          </div>
+          <div class="ltr-overlay-tag">Occupied</div>
+        </div>
+        <div class="ltr-body">
+          <div class="ltr-city">Gate District, St. Louis</div>
+          <h3>Gate District Home I</h3>
+          <div class="ltr-privacy">
+            <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="11" width="18" height="11" rx="2" ry="2"/><path d="M7 11V7a5 5 0 0110 0v4"/></svg>
+            Tenant privacy protected — exact address available upon inquiry
+          </div>
+        </div>
+      </div>
+
+      <!-- LTR 5: Gate District #2 -->
+      <div class="ltr-card fade-in">
+        <div class="ltr-photo">
+          <div class="ltr-photo-inner">
+            <div class="ltr-photo-cell" style="background:url('Park 1.jpeg') center/cover;"></div>
+            <div class="ltr-photo-cell" style="background:url('Park 2.jpeg') center/cover;"></div>
+          </div>
+          <div class="ltr-overlay-tag">Occupied</div>
+        </div>
+        <div class="ltr-body">
+          <div class="ltr-city">Gate District, St. Louis</div>
+          <h3>Gate District Home II</h3>
+          <div class="ltr-privacy">
+            <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="11" width="18" height="11" rx="2" ry="2"/><path d="M7 11V7a5 5 0 0110 0v4"/></svg>
+            Tenant privacy protected — exact address available upon inquiry
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- WE BUY HOMES -->
+<section id="we-buy-homes">
+  <div style="max-width:1100px; margin:0 auto;">
+    <div class="section-label fade-in">Sell Your Home</div>
+    <h2 class="section-title fade-in">We Buy Homes</h2>
+    <p style="font-size:0.9rem;color:var(--text-muted);font-weight:300;max-width:560px;line-height:1.75;margin-bottom:3rem;" class="fade-in">
+      Looking to sell your home quickly? We purchase properties in any condition across the St. Louis metro area. No repairs needed, no agent fees — just a fair offer and a fast closing.
+    </p>
+
+    <div class="reno-grid">
+
+      <div class="reno-card fade-in">
+        <div style="padding:2.5rem;">
+          <svg style="width:48px;height:48px;color:var(--gold);margin-bottom:1.5rem;" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+            <path d="M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-4 0a1 1 0 01-1-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 01-1 1h-2z"/>
+          </svg>
+          <h3 style="font-family:'Cormorant Garamond',serif;font-size:1.4rem;color:var(--forest);margin-bottom:0.75rem;">Any Condition</h3>
+          <p style="font-size:0.85rem;color:var(--text-muted);font-weight:300;line-height:1.7;">We buy homes as-is. No need to make repairs, clean up, or stage the property. We handle everything so you don't have to.</p>
+        </div>
+      </div>
+
+      <div class="reno-card fade-in">
+        <div style="padding:2.5rem;">
+          <svg style="width:48px;height:48px;color:var(--gold);margin-bottom:1.5rem;" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+            <path d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"/>
+          </svg>
+          <h3 style="font-family:'Cormorant Garamond',serif;font-size:1.4rem;color:var(--forest);margin-bottom:0.75rem;">Fast Closing</h3>
+          <p style="font-size:0.85rem;color:var(--text-muted);font-weight:300;line-height:1.7;">We move on your timeline. Whether you need to close in two weeks or two months, we work around your schedule.</p>
+        </div>
+      </div>
+
+    </div>
+
+    <div style="text-align:center;margin-top:3rem;" class="fade-in">
+      <a href="#contact" class="btn-primary" style="display:inline-block;">Get Your Offer</a>
+    </div>
+
+  </div>
+</section>
+
+<!-- CONTACT -->
+<section id="contact">
+  <div style="max-width:1100px; margin:0 auto;">
+    <div class="section-label fade-in">Get In Touch</div>
+  </div>
+  <div class="contact-inner">
+    <div class="contact-left fade-in">
+      <h2>Let's Talk<br><em style="font-family:'Cormorant Garamond',serif;font-style:italic;color:var(--forest);">Properties</em></h2>
+      <p>Whether you're interested in renting, have a property to renovate, or want to learn more about what we do — Katie is happy to connect.</p>
+
+      <div class="contact-detail">
+        <div class="contact-icon">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07A19.5 19.5 0 013.07 9.81a19.79 19.79 0 01-3.07-8.67A2 2 0 012 .99h3a2 2 0 012 1.72 12.84 12.84 0 00.7 2.81 2 2 0 01-.45 2.11L6.09 8.91a16 16 0 006 6l1.27-1.27a2 2 0 012.11-.45 12.84 12.84 0 002.81.7A2 2 0 0122 16.92z"/></svg>
+        </div>
+        <div class="contact-text">
+          <div class="contact-text-label">Phone</div>
+          <a href="tel:3143254104">314-325-4104</a>
+        </div>
+      </div>
+
+      <div class="contact-detail">
+        <div class="contact-icon">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 21v-2a4 4 0 00-4-4H8a4 4 0 00-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>
+        </div>
+        <div class="contact-text">
+          <div class="contact-text-label">Contact</div>
+          Katie Hoffman
+        </div>
+      </div>
+
+      <div class="contact-detail">
+        <div class="contact-icon">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0118 0z"/><circle cx="12" cy="10" r="3"/></svg>
+        </div>
+        <div class="contact-text">
+          <div class="contact-text-label">Service Area</div>
+          St. Louis Metro Area, MO
+        </div>
+      </div>
+    </div>
+
+    <form class="contact-form fade-in" action="https://formspree.io/f/mkoqrkev" method="POST" id="contact-form">
+      <h3>Send a Message</h3>
+      <input type="hidden" name="_subject" value="New Cophia Properties Inquiry" />
+      <div class="form-group">
+        <label>Your Name</label>
+        <input type="text" name="name" placeholder="Full name" required />
+      </div>
+      <div class="form-group">
+        <label>Email Address</label>
+        <input type="email" name="email" placeholder="email@example.com" required />
+      </div>
+      <div class="form-group">
+        <label>Phone Number</label>
+        <input type="tel" name="phone" placeholder="(314) 000-0000" />
+      </div>
+      <div class="form-group">
+        <label>I'm Interested In</label>
+        <select name="interest">
+          <option value="">Select a topic...</option>
+          <option>Short-Term Rental Inquiry</option>
+          <option>Long-Term Rental Inquiry</option>
+          <option>Sell My Home</option>
+          <option>General Question</option>
+        </select>
+      </div>
+      <div class="form-group">
+        <label>Message</label>
+        <textarea name="message" placeholder="Tell us a little about what you're looking for..."></textarea>
+      </div>
+      <button type="submit" class="submit-btn">Send Message</button>
+    </form>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-logo">Cophia <span>Properties</span></div>
+  <nav class="footer-links">
+    <a href="#str">STR</a>
+    <a href="#ltr">LTR</a>
+    <a href="#we-buy-homes">We Buy Homes</a>
+    <a href="/book/">Book Direct</a>
+    <a href="#contact">Contact</a>
+  </nav>
+  <div class="footer-copy">© 2025 Cophia Properties · St. Louis, MO</div>
+</footer>
+
+<script>
+  // Scroll-triggered fade-ins
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        entry.target.classList.add('visible');
+      }
+    });
+  }, { threshold: 0.02, rootMargin: '0px 0px 50px 0px' });
+
+  document.querySelectorAll('.fade-in').forEach(el => observer.observe(el));
+
+  // Fallback: make everything visible after 2s in case observer doesn't fire
+  setTimeout(() => {
+    document.querySelectorAll('.fade-in').forEach(el => el.classList.add('visible'));
+  }, 2000);
+
+  // Stagger child cards
+  document.querySelectorAll('.str-grid, .ltr-grid, .reno-grid, .services-grid').forEach(grid => {
+    Array.from(grid.children).forEach((child, i) => {
+      child.style.transitionDelay = `${i * 0.1}s`;
+    });
+  });
+
+  // Nav scroll shrink
+  window.addEventListener('scroll', () => {
+    const nav = document.querySelector('nav');
+    if (window.scrollY > 60) {
+      nav.style.padding = '0.8rem 4rem';
+    } else {
+      nav.style.padding = '1.2rem 4rem';
+    }
+  });
+
+  // Form submit handler
+  // Contact form submission via Formspree
+  const form = document.getElementById('contact-form');
+  form.addEventListener('submit', function(e) {
+    e.preventDefault();
+    const btn = form.querySelector('.submit-btn');
+    btn.textContent = 'Sending...';
+    btn.disabled = true;
+    fetch(form.action, {
+      method: 'POST',
+      body: new FormData(form),
+      headers: { 'Accept': 'application/json' }
+    }).then(response => {
+      if (response.ok) {
+        btn.textContent = 'Message Sent ✓';
+        btn.style.background = 'var(--forest)';
+        btn.style.color = '#fff';
+        form.reset();
+        setTimeout(() => {
+          btn.textContent = 'Send Message';
+          btn.style.background = '';
+          btn.style.color = '';
+          btn.disabled = false;
+        }, 3000);
+      } else {
+        btn.textContent = 'Error — Try Again';
+        btn.style.background = '#c0392b';
+        btn.disabled = false;
+        setTimeout(() => {
+          btn.textContent = 'Send Message';
+          btn.style.background = '';
+        }, 3000);
+      }
+    }).catch(() => {
+      btn.textContent = 'Error — Try Again';
+      btn.style.background = '#c0392b';
+      btn.disabled = false;
+      setTimeout(() => {
+        btn.textContent = 'Send Message';
+        btn.style.background = '';
+      }, 3000);
+    });
+  });
+</script>
+
+</body>
+</html>
